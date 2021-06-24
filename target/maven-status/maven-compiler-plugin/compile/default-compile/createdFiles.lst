@@ -1,0 +1,8 @@
+com\ltc\config\hibernate\HibernateConfig.class
+com\ltc\model\Product.class
+com\ltc\model\Cart.class
+com\ltc\model\Order.class
+com\ltc\model\User.class
+com\ltc\model\Categories.class
+com\ltc\controllers\TestController.class
+com\ltc\model\BaseModel.class
