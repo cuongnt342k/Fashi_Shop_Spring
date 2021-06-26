@@ -8,9 +8,6 @@ import java.util.List;
 @Table(name = "product")
 public class Product extends BaseModel {
 
-    @Column(name = "product_id", nullable = false, unique = true)
-    private Long productId;
-
     @Column(name = "product_name")
     private String productName;
 
@@ -33,14 +30,9 @@ public class Product extends BaseModel {
     @OneToMany(mappedBy = "product")
     List<OrderProduct> orderProducts = new ArrayList<>();
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public String getProductName() {
         return productName;
     }
-
     public void setProductName(String productName) {
         this.productName = productName;
     }

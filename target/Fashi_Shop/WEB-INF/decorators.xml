@@ -1,5 +1,5 @@
-<decorators defaultdir="/WEB-INF/pages">
-    <decorator name="shop" pages="shop.jsp">
-        <pattern>/shop/*</pattern>
-    </decorator>
-</decorators>
+<!--<decorators defaultdir="/WEB-INF/pages">-->
+<!--    <decorator name="shop" pages="shop.jsp">-->
+<!--        <pattern>/shop/*</pattern>-->
+<!--    </decorator>-->
+<!--</decorators>-->
