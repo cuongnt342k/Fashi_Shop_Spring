@@ -21,10 +21,10 @@ public class ProductServicesImpl implements ProductServices {
 
     @Override
     public List<ProductDTO> findAllProduct() throws Exception {
-//        List<Product> products= productRepo.findAll();
-////        List<Product> products= new ArrayList<>();
-//        return mapper.toDtoBean(products);
-        return null;
+        List<Product> products= productRepo.findAll();
+//        List<Product> products= new ArrayList<>();
+        return mapper.toDtoBean(products);
+//        return null;
     }
 
 }

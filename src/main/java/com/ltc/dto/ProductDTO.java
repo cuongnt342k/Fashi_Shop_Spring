@@ -17,6 +17,8 @@ public class ProductDTO extends BaseDTO{
 
     private Long price;
 
+    private Long salePrice;
+
     private Categories categories;
 
     public Long getProductId() {
@@ -65,6 +67,14 @@ public class ProductDTO extends BaseDTO{
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Long getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(Long salePrice) {
+        this.salePrice = salePrice;
     }
 
     public Categories getCategories() {

@@ -199,11 +199,11 @@
                 </div>
                 <div class="product-list">
                     <div class="row">
-<%--                        <c:forEach var="product" items="${productList}">--%>
+                        <c:forEach var="product" items="${productList}">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-1.jpg" alt="">
+                                        <img src="<c:url value="/template/${product.img}"/>" alt="">
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -215,18 +215,18 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
+                                        <div class="catagory-name">${product.brand}</div>
                                         <a href="#">
-                                            <h5>Pure Pineapple</h5>
+                                            <h5>${product.productName}</h5>
                                         </a>
                                         <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
+                                            $${product.price}
+                                            <span>$${product.salePrice}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-<%--                        </c:forEach>--%>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="loading-more">

@@ -23,6 +23,9 @@ public class Product extends BaseModel {
     @Column(name = "price")
     private Long price;
 
+    @Column(name= "sale_price")
+    private Long salePrice;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categroy_id", referencedColumnName = "id")
     Categories categories = new Categories();
@@ -30,9 +33,11 @@ public class Product extends BaseModel {
     @OneToMany(mappedBy = "product")
     List<OrderProduct> orderProducts = new ArrayList<>();
 
+
     public String getProductName() {
         return productName;
     }
+
     public void setProductName(String productName) {
         this.productName = productName;
     }
@@ -67,5 +72,13 @@ public class Product extends BaseModel {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public Long getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(Long salePrice) {
+        this.salePrice = salePrice;
     }
 }
