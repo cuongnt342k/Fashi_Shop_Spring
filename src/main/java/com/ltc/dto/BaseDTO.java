@@ -3,9 +3,19 @@ package com.ltc.dto;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public abstract class BaseDTO {
+public abstract class BaseDTO<T> {
+    private Integer page;
+
+    private Integer limit;
+
+    private Integer totalPage;
+
+    private Integer totalItem;
+
     protected Boolean deleted;
 
     protected Date createdDate;
@@ -15,6 +25,8 @@ public abstract class BaseDTO {
     protected Date updatedDate;
 
     protected String updatedBy;
+
+    private List<T> listResult = new ArrayList<>();
 
     protected BaseDTO() {
         createdDate = new Date();
@@ -68,5 +80,45 @@ public abstract class BaseDTO {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public Integer getTotalItem() {
+        return totalItem;
+    }
+
+    public void setTotalItem(Integer totalItem) {
+        this.totalItem = totalItem;
+    }
+
+    public List<T> getListResult() {
+        return listResult;
+    }
+
+    public void setListResult(List<T> listResult) {
+        this.listResult = listResult;
     }
 }

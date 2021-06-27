@@ -5,6 +5,8 @@ import com.ltc.model.Categories;
 import javax.persistence.Column;
 
 public class ProductDTO extends BaseDTO{
+
+
     private Long productId;
 
     private String productName;

@@ -132,7 +132,7 @@
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li><a href="./">Home</a></li>
-                    <li><a href="./shop">Shop</a></li>
+                    <li><a href="<c:url value="/shop?page=1&limit=6"/>">Shop</a></li>
                     <li><a href="#">Collection</a>
                         <ul class="dropdown">
                             <li><a href="#">Men's</a></li>
