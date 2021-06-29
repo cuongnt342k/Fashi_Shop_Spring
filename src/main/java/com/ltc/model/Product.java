@@ -27,7 +27,7 @@ public class Product extends BaseModel {
     private Long salePrice;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "categroy_id", referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     Categories categories = new Categories();
 
     @OneToMany(mappedBy = "product")

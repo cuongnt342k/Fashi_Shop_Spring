@@ -21,7 +21,27 @@ public class ProductDTO extends BaseDTO{
 
     private Long salePrice;
 
-    private Categories categories;
+    private Long categoriId;
+
+    private String sortName;
+
+    private String sortBy;
+
+    public String getSortName() {
+        return sortName;
+    }
+
+    public void setSortName(String sortName) {
+        this.sortName = sortName;
+    }
+
+    public String getSortBy() {
+        return sortBy;
+    }
+
+    public void setSortBy(String sortBy) {
+        this.sortBy = sortBy;
+    }
 
     public Long getProductId() {
         return productId;
@@ -79,11 +99,11 @@ public class ProductDTO extends BaseDTO{
         this.salePrice = salePrice;
     }
 
-    public Categories getCategories() {
-        return categories;
+    public Long getCategoriId() {
+        return categoriId;
     }
 
-    public void setCategories(Categories categories) {
-        this.categories = categories;
+    public void setCategoriId(Long categoriId) {
+        this.categoriId = categoriId;
     }
 }

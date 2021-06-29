@@ -118,26 +118,33 @@
                     <i class="ti-menu"></i>
                     <span>All departments</span>
                     <ul class="depart-hover">
-                        <li class="active"><a href="#">Women’s Clothing</a></li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                        <li><a href="#">Underwear</a></li>
-                        <li><a href="#">Kid's Clothing</a></li>
-                        <li><a href="#">Brand Fashion</a></li>
-                        <li><a href="#">Accessories/Shoes</a></li>
-                        <li><a href="#">Luxury Brands</a></li>
-                        <li><a href="#">Brand Outdoor Apparel</a></li>
+                        <li>
+                            <a href="<c:url value="/shop?page=0&size=${size}&categoryId=1"/> ">Men</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/shop?page=0&size=${size}&categoryId=2"/> ">Women</a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/shop?page=0&size=${size}&categoryId=3"/> ">Kid</a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li><a href="./">Home</a></li>
-                    <li><a href="./shop">Shop</a></li>
+                    <li><a href="<c:url value="/shop?page=0&size=6"/>">Shop</a></li>
                     <li><a href="#">Collection</a>
                         <ul class="dropdown">
-                            <li><a href="#">Men's</a></li>
-                            <li><a href="#">Women's</a></li>
-                            <li><a href="#">Kid's</a></li>
+                            <li>
+                                <a href="<c:url value="/shop?page=0&size=${size}&categoryId=1"/> ">Men</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value="/shop?page=0&size=${size}&categoryId=2"/> ">Women</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value="/shop?page=0&size=${size}&categoryId=3"/> ">Kid</a>
+                            </li>
                         </ul>
                     </li>
                     <li><a href="./blog.html">Blog</a></li>
