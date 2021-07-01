@@ -40,18 +40,26 @@
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
                         <a href="./">
-                            <img src="img/logo.png" alt="">
+                            <img src="<c:url value="/template/img/logo.png"/>" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search">
-                        <button type="button" class="category-btn">All Categories</button>
-                        <form action="#" class="input-group">
-                            <input type="text" placeholder="What do you need?">
-                            <button type="button"><i class="ti-search"></i></button>
-                        </form>
-                    </div>
+                    <form action="<c:url value="/search?page=0&size=6"/>" method="get">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">All
+                                Categories</button>
+                            <div class="input-group">
+                                <input name="textSearch" type="text" placeholder="What do you need?"
+                                       value="${textSearch}">
+                                <button type="submit">
+                                    <i class="ti-search"></i>
+                                </button>
+                                <input type="hidden" name="page" value="0">
+                                <input type="hidden" name="size" value="6">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
@@ -67,32 +75,32 @@
                             <div class="cart-hover">
                                 <div class="select-items">
                                     <table>
-                                        <tbody>
-                                        <tr>
-                                            <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                            <td class="si-text">
-                                                <div class="product-selected">
-                                                    <p>$60.00 x 1</p>
-                                                    <h6>Kabino Bedside Table</h6>
-                                                </div>
-                                            </td>
-                                            <td class="si-close">
-                                                <i class="ti-close"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                            <td class="si-text">
-                                                <div class="product-selected">
-                                                    <p>$60.00 x 1</p>
-                                                    <h6>Kabino Bedside Table</h6>
-                                                </div>
-                                            </td>
-                                            <td class="si-close">
-                                                <i class="ti-close"></i>
-                                            </td>
-                                        </tr>
-                                        </tbody>
+<%--                                        <tbody>--%>
+<%--                                        <tr>--%>
+<%--                                            <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>--%>
+<%--                                            <td class="si-text">--%>
+<%--                                                <div class="product-selected">--%>
+<%--                                                    <p>$60.00 x 1</p>--%>
+<%--                                                    <h6>Kabino Bedside Table</h6>--%>
+<%--                                                </div>--%>
+<%--                                            </td>--%>
+<%--                                            <td class="si-close">--%>
+<%--                                                <i class="ti-close"></i>--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        <tr>--%>
+<%--                                            <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>--%>
+<%--                                            <td class="si-text">--%>
+<%--                                                <div class="product-selected">--%>
+<%--                                                    <p>$60.00 x 1</p>--%>
+<%--                                                    <h6>Kabino Bedside Table</h6>--%>
+<%--                                                </div>--%>
+<%--                                            </td>--%>
+<%--                                            <td class="si-close">--%>
+<%--                                                <i class="ti-close"></i>--%>
+<%--                                            </td>--%>
+<%--                                        </tr>--%>
+<%--                                        </tbody>--%>
                                     </table>
                                 </div>
                                 <div class="select-total">
@@ -147,16 +155,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="<c:url value="/contact"/> ">Contact</a></li>
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
-                            <li><a href="./blog-details.html">Blog Details</a></li>
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="./check-out.html">Checkout</a></li>
-                            <li><a href="./faq.html">Faq</a></li>
-                            <li><a href="./register.html">Register</a></li>
-                            <li><a href="./login.html">Login</a></li>
+                            <li><a href="<c:url value="/shopping-cart"/> ">Shopping Cart</a></li>
+                            <li><a href="<c:url value="/check-out"/>">Checkout</a></li>
+                            <li><a href="<c:url value="/faq"/>">Faq</a></li>
+                            <li><a href="<c:url value="/register"/>">Register</a></li>
+                            <li><a href="<c:url value="/login"/>">Login</a></li>
                         </ul>
                     </li>
                 </ul>

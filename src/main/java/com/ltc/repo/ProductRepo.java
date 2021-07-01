@@ -10,5 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ProductRepo extends BaseRepository<Product,Long>, ProductRepoCustom{
+
     Page<Product> findAllByCategories_Id(Long categoryId, Pageable page);
+
+    Page<Product> findByProductNameContaining(String productName, Pageable page);
+
+    Product findById(Long productId);
 }

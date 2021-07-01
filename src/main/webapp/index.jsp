@@ -49,7 +49,7 @@
                         <h1>Black friday</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+                        <a href="<c:url value="/shop?page=0&size=6"/>" class="primary-btn">Shop Now</a>
                     </div>
                 </div>
                 <div class="off-card">
@@ -65,7 +65,7 @@
                         <h1>Black friday</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+                        <a href="<c:url value="/shop?page=0&size=6"/>" class="primary-btn">Shop Now</a>
                     </div>
                 </div>
                 <div class="off-card">
@@ -85,7 +85,7 @@
                 <div class="single-banner">
                     <img src="<c:url value="/template/img/banner-1.jpg"/>" alt="">
                     <div class="inner-text">
-                        <h4>Men’s</h4>
+                        <h4><a href="<c:url value="/shop?page=0&size=${size}&categoryId=1"/> ">Men’s</a></h4>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 <div class="single-banner">
                     <img src="<c:url value="/template/img/banner-2.jpg"/>" alt="">
                     <div class="inner-text">
-                        <h4>Women’s</h4>
+                        <h4><a href="<c:url value="/shop?page=0&size=${size}&categoryId=2"/> ">Women’s</a></h4>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                 <div class="single-banner">
                     <img src="<c:url value="/template/img/banner-3.jpg"/>" alt="">
                     <div class="inner-text">
-                        <h4>Kid’s</h4>
+                        <h4 style="color: black"><a href="<c:url value="/shop?page=0&size=${size}&categoryId=3"/> ">Kid’s</a></h4>
                     </div>
                 </div>
             </div>
@@ -258,7 +258,7 @@
                     <p>Secs</p>
                 </div>
             </div>
-            <a href="#" class="primary-btn">Shop Now</a>
+            <a href="<c:url value="/shop?page=0&size=6"/>" class="primary-btn">Shop Now</a>
         </div>
     </div>
 </section>

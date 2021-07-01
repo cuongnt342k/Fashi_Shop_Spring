@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order_product")
 public class OrderProduct extends BaseModel{
-    private Integer amount;
+    private Integer quantity;
 
     private Long total;
 
@@ -33,12 +33,12 @@ public class OrderProduct extends BaseModel{
         this.product = product;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Long getTotal() {
@@ -48,4 +48,5 @@ public class OrderProduct extends BaseModel{
     public void setTotal(Long total) {
         this.total = total;
     }
+
 }

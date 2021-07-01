@@ -36,8 +36,14 @@ public class ProductServicesImpl implements ProductServices {
     }
 
     @Override
-    public int getTotalItem() {
-        return (int) productRepo.count();
+    public Page<Product> findProductName(String productName, Pageable pageable) throws Exception {
+        return productRepo.findByProductNameContaining(productName,pageable);
     }
+
+    @Override
+    public Product findProductById(Long productId) throws Exception {
+        return productRepo.findById(productId);
+    }
+
 
 }

@@ -15,8 +15,6 @@ public class ProductDTO extends BaseDTO{
 
     private String brand;
 
-    private String size;
-
     private Long price;
 
     private Long salePrice;
@@ -26,6 +24,8 @@ public class ProductDTO extends BaseDTO{
     private String sortName;
 
     private String sortBy;
+
+    private String description;
 
     public String getSortName() {
         return sortName;
@@ -75,13 +75,6 @@ public class ProductDTO extends BaseDTO{
         this.brand = brand;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public Long getPrice() {
         return price;
@@ -105,5 +98,13 @@ public class ProductDTO extends BaseDTO{
 
     public void setCategoriId(Long categoriId) {
         this.categoriId = categoriId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

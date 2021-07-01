@@ -4,7 +4,7 @@ import com.ltc.model.Order;
 import com.ltc.model.Product;
 
 public class OrderProductDTO extends BaseDTO{
-    private Integer amount;
+    private Integer quantity;
 
     private Long total;
 
@@ -24,12 +24,12 @@ public class OrderProductDTO extends BaseDTO{
         this.product = product;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Long getTotal() {

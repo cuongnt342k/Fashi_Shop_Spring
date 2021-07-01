@@ -17,14 +17,14 @@ public class Product extends BaseModel {
     @Column(name = "brand")
     private String brand;
 
-    @Column(name = "size")
-    private String size;
-
     @Column(name = "price")
     private Long price;
 
     @Column(name= "sale_price")
     private Long salePrice;
+
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -58,13 +58,6 @@ public class Product extends BaseModel {
         this.brand = brand;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public Long getPrice() {
         return price;
@@ -80,5 +73,13 @@ public class Product extends BaseModel {
 
     public void setSalePrice(Long salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
