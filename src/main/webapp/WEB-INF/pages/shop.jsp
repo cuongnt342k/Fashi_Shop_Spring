@@ -52,7 +52,6 @@
     </div>
 </div>
 <!-- Breadcrumb Section Begin -->
-
 <!-- Product Shop Section Begin -->
 <section class="product-shop spad">
     <div class="container">
@@ -89,10 +88,10 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a>
+                                            <li class="w-icon active"><a href="<c:url value="/addCart?id=${product.id}&quantity=1"/>"><i class="icon_bag_alt"></i></a>
                                             </li>
-                                            <li class="quick-view"><a href="<c:url value="/product-deatil?productId=${product.id}"/> ">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                            <li class="quick-view"><a href="<c:url value="/product-detail?productId=${product.id}"/> ">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="<c:url value="/shopping-cart"/>"><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">

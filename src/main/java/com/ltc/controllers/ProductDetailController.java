@@ -14,8 +14,8 @@ public class ProductDetailController {
     @Autowired
     ProductServices productServices;
 
-    @RequestMapping(value = "/product-deatil", method = RequestMethod.GET)
-    public ModelAndView productdeatilPage(@RequestParam(value = "productId") Long productId) throws Exception {
+    @RequestMapping(value = "/product-detail", method = RequestMethod.GET)
+    public ModelAndView productdetailPage(@RequestParam(value = "productId") Long productId) throws Exception {
         ModelAndView mav = new ModelAndView("product-detail");
         Product product = productServices.findProductById(productId);
         mav.addObject("product", product);

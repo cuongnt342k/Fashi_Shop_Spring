@@ -1,5 +1,44 @@
 package com.ltc.dto;
 
-public class CartDTO {
-    
+import com.ltc.model.Product;
+
+public class CartDTO extends BaseDTO{
+    private int quantity;
+
+    private double  totalPrice;
+
+    private Product product;
+
+    public CartDTO() {
+    }
+
+    public CartDTO(int quantity, double totalPrice, Product product) {
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

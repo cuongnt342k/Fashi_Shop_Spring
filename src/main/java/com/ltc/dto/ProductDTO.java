@@ -6,7 +6,6 @@ import javax.persistence.Column;
 
 public class ProductDTO extends BaseDTO{
 
-
     private Long productId;
 
     private String productName;

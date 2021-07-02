@@ -82,57 +82,62 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="product-details">
-                            <div class="pd-title">
-                                <span>Product</span>
-                                <h3>${product.productName}</h3>
-                                <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
-                            </div>
-                            <div class="pd-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span>(5)</span>
-                            </div>
-                            <div class="pd-desc">
-                                <p>${product.description}</p>
-                                <h4>$${product.price} <span>$${product.salePrice}</span></h4>
-                            </div>
-                            <div class="pd-size-choose">
-                                <div class="sc-item">
-                                    <input type="radio" id="sm-size">
-                                    <label for="sm-size">s</label>
+                        <form name="addCart" action="<c:url value="/addCart"/>">
+                            <div class="product-details">
+                                <div class="pd-title">
+                                    <span>Product</span>
+                                    <h3>${product.productName}</h3>
+                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="md-size">
-                                    <label for="md-size">m</label>
+                                <div class="pd-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <span>(5)</span>
                                 </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="lg-size">
-                                    <label for="lg-size">l</label>
+                                <div class="pd-desc">
+                                    <p>${product.description}</p>
+                                    <h4>$${product.price} <span>$${product.salePrice}</span></h4>
                                 </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="xl-size">
-                                    <label for="xl-size">xs</label>
+                                <div class="pd-size-choose">
+                                    <div class="sc-item">
+                                        <input type="radio" id="sm-size">
+                                        <label for="sm-size">s</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="md-size">
+                                        <label for="md-size">m</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="lg-size">
+                                        <label for="lg-size">l</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="xl-size">
+                                        <label for="xl-size">xs</label>
+                                    </div>
+                                </div>
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1" name="quantity">
+                                    </div>
+                                    <input name="id" type="hidden" value="${product.id}" class="primary-btn pd-cart">
+                                    <input type="submit" value="Add To Cart" class="primary-btn pd-cart">
+<%--                                    <a href="<c:url value="/addCart?id=${product.id}"/>" class="primary-btn pd-cart"> Add To Cart</a>--%>
+                                </div>
+                                <div class="pd-share">
+                                    <div class="p-code">Sku : ${product.id}</div>
+                                    <div class="pd-social">
+                                        <a href="#"><i class="ti-facebook"></i></a>
+                                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                                        <a href="#"><i class="ti-linkedin"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                                <a href="<c:url value="/shopping-cart"/>" class="primary-btn pd-cart">Add To Cart</a>
-                            </div>
-                            <div class="pd-share">
-                                <div class="p-code">Sku : ${product.id}</div>
-                                <div class="pd-social">
-                                    <a href="#"><i class="ti-facebook"></i></a>
-                                    <a href="#"><i class="ti-twitter-alt"></i></a>
-                                    <a href="#"><i class="ti-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
+
                     </div>
                 </div>
                 <div class="product-tab">
