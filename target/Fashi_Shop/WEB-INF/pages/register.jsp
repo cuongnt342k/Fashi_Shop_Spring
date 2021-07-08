@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,7 +32,6 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -58,24 +64,35 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="register-form">
-                    <h2>Register</h2>
-                    <form action="#">
-                        <div class="group-input">
-                            <label for="username">Username or email address *</label>
-                            <input type="text" id="username">
-                        </div>
-                        <div class="group-input">
-                            <label for="pass">Password *</label>
-                            <input type="text" id="pass">
-                        </div>
-                        <div class="group-input">
-                            <label for="con-pass">Confirm Password *</label>
-                            <input type="text" id="con-pass">
-                        </div>
-                        <button type="submit" class="site-btn register-btn">REGISTER</button>
-                    </form>
+                    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+                        <h2>Register</h2>
+                        <spring:bind path="username">
+                            <div class="group-input ${status.error ? 'has-error' : ''}">
+                                <form:input type="text" path="username" class="form-control" placeholder="Username"
+                                            autofocus="true"></form:input>
+                                <form:errors path="username"></form:errors>
+                            </div>
+                        </spring:bind>
+
+                        <spring:bind path="password">
+                            <div class="group-input ${status.error ? 'has-error' : ''}">
+                                <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                                <form:errors path="password"></form:errors>
+                            </div>
+                        </spring:bind>
+
+                        <spring:bind path="passwordConfirm">
+                            <div class="group-input ${status.error ? 'has-error' : ''}">
+                                <form:input type="password" path="passwordConfirm" class="form-control"
+                                            placeholder="Confirm your password"></form:input>
+                                <form:errors path="passwordConfirm"></form:errors>
+                            </div>
+                        </spring:bind>
+
+                        <button class="site-btn login-btn" type="submit">Submit</button>
+                    </form:form>
                     <div class="switch-login">
-                        <a href="./login.html" class="or-login">Or Login</a>
+                        <a href="<c:url value="/login"/> " class="or-login">Or Login</a>
                     </div>
                 </div>
             </div>
@@ -132,7 +149,7 @@
 <script src="<c:url value="/template/js/jquery.slicknav.js" />"></script>
 <script src="<c:url value="/template/js/owl.carousel.min.js" />"></script>
 <script src="<c:url value="/template/js/main.js" />"></script>
-<script src="<c:url value="/template/js/jquery.twbsPagination.js" />" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 
 </html>

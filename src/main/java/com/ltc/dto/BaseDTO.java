@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class BaseDTO implements Serializable {
+    protected Long id;
 
     protected Boolean deleted;
 
@@ -75,4 +76,11 @@ public abstract class BaseDTO implements Serializable {
         this.updatedBy = updatedBy;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

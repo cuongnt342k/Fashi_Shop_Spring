@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,7 +27,6 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -60,14 +61,24 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="login-form">
                     <h2>Login</h2>
-                    <form action="#">
+                    <c:if test="${param.incorrectAccount != null}">
+                        <div class="alert alert-danger">
+                            Username or password incorrect
+                        </div>
+                    </c:if>
+                    <c:if test="${param.accessDenied != null}">
+                        <div class="alert alert-danger">
+                            you Not authorize
+                        </div>
+                    </c:if>
+                    <form action="j_spring_security_check" id="formLogin" method="post">
                         <div class="group-input">
                             <label for="username">Username or email address *</label>
-                            <input type="text" id="username">
+                            <input type="text" id="username" name="j_username">
                         </div>
                         <div class="group-input">
                             <label for="pass">Password *</label>
-                            <input type="text" id="pass">
+                            <input type="password" id="pass" name="j_password">
                         </div>
                         <div class="group-input gi-check">
                             <div class="gi-more">
@@ -82,7 +93,7 @@
                         <button type="submit" class="site-btn login-btn">Sign In</button>
                     </form>
                     <div class="switch-login">
-                        <a href="./register.html" class="or-login">Or Create An Account</a>
+                        <a class="or-login" href="${contextPath}/registration">Create an account</a>
                     </div>
                 </div>
             </div>
@@ -139,7 +150,6 @@
 <script src="<c:url value="/template/js/jquery.slicknav.js" />"></script>
 <script src="<c:url value="/template/js/owl.carousel.min.js" />"></script>
 <script src="<c:url value="/template/js/main.js" />"></script>
-<script src="<c:url value="/template/js/jquery.twbsPagination.js" />" type="text/javascript"></script>
 </body>
 
 </html>

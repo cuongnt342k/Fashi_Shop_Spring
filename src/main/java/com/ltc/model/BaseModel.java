@@ -1,11 +1,18 @@
 package com.ltc.model;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel {
 
 //    @Transient
@@ -21,16 +28,20 @@ public abstract class BaseModel {
 
     @Column(name = "created_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     protected Date createdDate;
 
     @Column(name = "created_by", updatable = false)
+    @CreatedBy
     protected String createdBy;
 
     @Column(name = "updated_date")
     @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     protected Date updatedDate;
 
     @Column(name = "updated_by")
+    @LastModifiedBy
     protected String updatedBy;
 
     protected BaseModel() {

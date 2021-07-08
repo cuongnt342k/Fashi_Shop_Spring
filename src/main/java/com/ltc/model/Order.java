@@ -20,8 +20,7 @@ public class Order extends BaseModel {
     private String deliveryAddress;
 
     private String customerName;
-    
-    private String userName;
+
 
     @OneToMany(mappedBy = "order")
     private List<OrderProduct> orderProducts = new ArrayList<>();
@@ -82,11 +81,4 @@ public class Order extends BaseModel {
         this.customerName = customerName;
     }
 
-    public String getuserName() {
-        return userName;
-    }
-
-    public void setuserName(String userName) {
-        userName = userName;
-    }
 }

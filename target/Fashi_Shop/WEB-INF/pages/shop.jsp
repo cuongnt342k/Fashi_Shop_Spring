@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,7 +26,6 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="pi-text">
                                         <div class="catagory-name">${product.brand}</div>
-                                        <a href="#">
+                                        <a href="<c:url value="/product-detail?productId=${product.id}"/>">
                                             <h5>${product.productName}</h5>
                                         </a>
                                         <div class="product-price">
@@ -188,7 +188,6 @@
 <script src="<c:url value="/template/js/jquery.slicknav.js" />"></script>
 <script src="<c:url value="/template/js/owl.carousel.min.js" />"></script>
 <script src="<c:url value="/template/js/main.js" />"></script>
-<script src="<c:url value="/template/js/jquery.twbsPagination.js" />" type="text/javascript"></script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@ public class ShoppingCartController {
     CartServices cartServices;
 
     @RequestMapping(value = "/shopping-cart", method = RequestMethod.GET)
-    public ModelAndView shoppingcartPage(HttpSession session) {
+    public ModelAndView shoppingCartPage(HttpSession session) {
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         ModelAndView mav = new ModelAndView("shopping-cart");
         mav.addObject("cart", cart);
@@ -28,7 +28,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/addCart")
-    public String AddCart(HttpServletRequest request,
+    public String addCart(HttpServletRequest request,
                           HttpSession session,
                           @RequestParam(value = "quantity") int quantity,
                           @RequestParam(value = "id") Long id) {
@@ -44,7 +44,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/editCart")
-    public String EditCart(HttpServletRequest request, HttpSession session) {
+    public String editCart(HttpServletRequest request, HttpSession session) {
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         if (cart == null) {
             cart = new HashMap<Long, CartDTO>();
@@ -62,7 +62,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "deleteCart/{id}")
-    public String DeleteCart(HttpServletRequest request, HttpSession session, @PathVariable Long id) {
+    public String deleteCart(HttpServletRequest request, HttpSession session, @PathVariable Long id) {
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         if (cart == null) {
             cart = new HashMap<Long, CartDTO>();

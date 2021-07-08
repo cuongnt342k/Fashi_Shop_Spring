@@ -1,11 +1,9 @@
 package com.ltc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -19,30 +17,41 @@ public class User extends BaseModel {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
-
     @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "role")
-    private String role;
-
-    @Column(name = "local")
-    private String local;
 
     @Column(name = "status")
     private Integer status;
 
-    public String getUserName() {
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
+    @Transient
+    private String passwordConfirm;
+
+    public User() {
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public String getUsername() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.userName = username;
     }
 
     public String getPassword() {
@@ -61,14 +70,6 @@ public class User extends BaseModel {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getFullName() {
         return fullName;
     }
@@ -85,22 +86,6 @@ public class User extends BaseModel {
         this.description = description;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -108,4 +93,23 @@ public class User extends BaseModel {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
 }

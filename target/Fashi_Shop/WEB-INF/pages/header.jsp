@@ -1,6 +1,9 @@
+<%@ page import="com.ltc.utils.SecurityUtils" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <!-- Header Section Begin -->
 <header class="header-section">
     <div class="header-top">
@@ -16,13 +19,45 @@
                 </div>
             </div>
             <div class="ht-right">
-                <a href="<c:url value="/login"/>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                <%--                <div class="lan-selector">--%>
+                <%--                    <select class="language_drop" name="countries" style="width:300px;">--%>
+                <%--                        <option value='yt' data-image="<c:url value="/template/img/flag-1.jpg"/> "--%>
+                <%--                                data-imagecss="flag yt"--%>
+                <%--                                data-title="English">English--%>
+                <%--                        </option>--%>
+                <%--                        <option value='yu' data-image="<c:url value="/template/img/flag-2.jpg"/>"--%>
+                <%--                                data-imagecss="flag yu"--%>
+                <%--                                data-title="Bangladesh">German--%>
+                <%--                        </option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
+                <security:authorize access="isAnonymous()">
+                    <a href="<c:url value="/registration"/>" class="login-panel">Register</a>
+                    <a href="<c:url value="/login"/>" class="login-panel" style="padding-right: 15px"><i class="fa fa-user"></i> Login </a>
+                </security:authorize>
+                <security:authorize access="isAuthenticated()">
+                    <div class="lan-selector">
+                        <a data-toggle="dropdown"
+                           class="dropdown-toggle user-action"><%=SecurityUtils.getPrincipal().getFullName()%><b
+                                class="caret"></b></a>
+                        <div class="dropdown-menu">
+                            <a href="<c:url value="/admin/"/> " class="dropdown-item"><i class="fa fa-user-o"></i> Admin</a></a>
+                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link" href="<c:url value='/logout'/>">Logout</a>
+                        </div>
+                    </div>
+                </security:authorize>
                 <div class="lan-selector">
                     <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                        <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                        <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
+                        <option value='yt' data-image="<c:url value="/template/img/flag-1.jpg"/> "
+                                data-imagecss="flag yt"
+                                data-title="English">English
+                        </option>
+                        <option value='yu' data-image="<c:url value="/template/img/flag-2.jpg"/>"
+                                data-imagecss="flag yu"
+                                data-title="Bangladesh">German
+                        </option>
                     </select>
                 </div>
                 <div class="top-social">
@@ -48,7 +83,8 @@
                     <form action="<c:url value="/search?page=0&size=6"/>" method="get">
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All
-                                Categories</button>
+                                Categories
+                            </button>
                             <div class="input-group">
                                 <input name="textSearch" type="text" placeholder="What do you need?"
                                        value="${textSearch}">
@@ -78,7 +114,9 @@
                                         <tbody>
                                         <c:forEach items="${Cart}" var="cart">
                                             <tr>
-                                                <td class="si-pic"><img width = "70" height = "70" src="<c:url value="/template/${cart.value.product.img}"/>" alt=""></td>
+                                                <td class="si-pic"><img width="70" height="70"
+                                                                        src="<c:url value="/template/${cart.value.product.img}"/>"
+                                                                        alt=""></td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
                                                         <p>$${cart.value.product.price} x ${cart.value.quantity}</p>
@@ -86,7 +124,8 @@
                                                     </div>
                                                 </td>
                                                 <td class="si-close">
-                                                    <a href=" <c:url value="/deleteCart/${cart.key}"/>"><i class="ti-close"></i></a>
+                                                    <a href=" <c:url value="/deleteCart/${cart.key}"/>"><i
+                                                            class="ti-close"></i></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -98,8 +137,10 @@
                                     <h5>$${TotalPriceCart}</h5>
                                 </div>
                                 <div class="select-button">
-                                    <a href="<c:url value="/shopping-cart"/>" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="<c:url value="/check-out"/>" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="<c:url value="/shopping-cart"/>" class="primary-btn view-card">VIEW
+                                        CARD</a>
+                                    <a href="<c:url value="/check-out"/>" class="primary-btn checkout-btn">CHECK
+                                        OUT</a>
                                 </div>
                             </div>
                         </li>
@@ -151,7 +192,7 @@
                             <li><a href="<c:url value="/shopping-cart"/> ">Shopping Cart</a></li>
                             <li><a href="<c:url value="/check-out"/>">Checkout</a></li>
                             <li><a href="<c:url value="/faq"/>">Faq</a></li>
-                            <li><a href="<c:url value="/register"/>">Register</a></li>
+                            <li><a href="<c:url value="/registration"/>">Register</a></li>
                             <li><a href="<c:url value="/login"/>">Login</a></li>
                         </ul>
                     </li>
@@ -161,4 +202,6 @@
         </div>
     </div>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- Header End -->

@@ -1,6 +1,5 @@
 package com.ltc.controllers;
 
-import com.ltc.dto.ProductDTO;
 import com.ltc.model.Product;
 import com.ltc.services.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-//import com.ltc.services.ProductServices;
 
 @Controller
 public class ShopController {
@@ -26,9 +22,6 @@ public class ShopController {
                            @RequestParam(value = "categoryId", required = false) Long categoryId,
                            @RequestParam(value = "sortName", required = false) String sortName, Pageable pageable, Model mav) throws Exception {
         Page<Product> pages;
-//        if (textSearch != null) {
-//            pages = productServices.findProductName(textSearch, pageable);
-//        }
         if (categoryId != null) {
             pages = productServices.findProductByCategory(categoryId, pageable);
         } else {
