@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="total-price first-row">$${cart.value.totalPrice}</td>
+                                    <td class="total-price first-row">$${TotalQuantityCart}</td>
 
                                     <td class="close-td first-row"><a href=" <c:url value="/deleteCart/${cart.key}"/>"><i class="ti-close"></i></a></td>
                                 </tr>

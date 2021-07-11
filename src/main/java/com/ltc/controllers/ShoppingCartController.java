@@ -49,6 +49,7 @@ public class ShoppingCartController {
         if (cart == null) {
             cart = new HashMap<Long, CartDTO>();
         }
+
         String[] cartId = request.getParameterValues("cartId");
         String[] quantity = request.getParameterValues("quantity");
 

@@ -9,13 +9,13 @@ public class OrderProduct extends BaseModel{
 
     private Long total;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order = new Order();
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product = new Product();
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    Order order = new Order();
 
     public Order getOrder() {
         return order;

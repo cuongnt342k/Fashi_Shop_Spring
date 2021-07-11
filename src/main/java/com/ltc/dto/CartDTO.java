@@ -5,14 +5,14 @@ import com.ltc.model.Product;
 public class CartDTO extends BaseDTO{
     private int quantity;
 
-    private double  totalPrice;
+    private Long  totalPrice;
 
     private Product product;
 
     public CartDTO() {
     }
 
-    public CartDTO(int quantity, double totalPrice, Product product) {
+    public CartDTO(int quantity, Long totalPrice, Product product) {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.product = product;
@@ -26,11 +26,11 @@ public class CartDTO extends BaseDTO{
         this.quantity = quantity;
     }
 
-    public double getTotalPrice() {
+    public Long getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
     }
 

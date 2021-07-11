@@ -30,7 +30,7 @@ public class Product extends BaseModel {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     Categories categories = new Categories();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     List<OrderProduct> orderProducts = new ArrayList<>();
 
 

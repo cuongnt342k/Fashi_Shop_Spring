@@ -2,7 +2,11 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -58,76 +62,96 @@
 <!-- Shopping Cart Section Begin -->
 <section class="checkout-section spad">
     <div class="container">
-        <form action="#" class="checkout-form">
+        <form:form method="post" modelAttribute="orders" class="checkout-form">
+
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="checkout-content">
-                        <a href="#" class="content-btn">Click Here To Login</a>
+                    <div class="row">
+                        <spring:bind path="customerFirstName">
+                            <div class="col-lg-6">
+                                <label for="fir">First Name<span>*</span></label>
+                                <form:input type="text" id="fir" path="customerFirstName"/>
+                            </div>
+                        </spring:bind>
+                        <spring:bind path="customerLastName">
+                            <div class="col-lg-6">
+                                <label for="last">Last Name<span>*</span></label>
+                                <form:input type="text" id="last" name="last_name" path="customerLastName"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="companyName">
+                            <div class="col-lg-12">
+                                <label for="cun-name">Company Name</label>
+                                <form:input type="text" id="cun-name" name="company_name" path="companyName"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="country">
+                            <div class="col-lg-12">
+                                <label for="cun">Country<span>*</span></label>
+                                <form:input type="text" id="cun" name="country" path="country"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="street_address">
+                            <div class="col-lg-12">
+                                <label for="street">Street Address<span>*</span></label>
+                                <form:input type="text" id="street" class="street-first" name="street_address"
+                                            path="street_address"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="postCode">
+                            <div class="col-lg-12">
+                                <label for="zip">Postcode / ZIP (optional)</label>
+                                <form:input type="text" id="zip" name="post_code" path="postCode"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="city">
+                            <div class="col-lg-12">
+                                <label for="town">Town / City<span>*</span></label>
+                                <form:input type="text" id="town" name="town" path="city"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="email">
+                            <div class="col-lg-6">
+                                <label for="email">Email Address<span>*</span></label>
+                                <form:input type="text" id="email" name="email" path="email"/>
+                            </div>
+                        </spring:bind>
+
+
+                        <spring:bind path="phoneNumber">
+                            <div class="col-lg-6">
+                                <label for="phone">Phone<span>*</span></label>
+                                <form:input type="text" id="phone" name="phone" path="phoneNumber"/>
+                            </div>
+                        </spring:bind>
+
+
                     </div>
                     <h4>Biiling Details</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="fir">First Name<span>*</span></label>
-                            <input type="text" id="fir">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="last">Last Name<span>*</span></label>
-                            <input type="text" id="last">
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="cun-name">Company Name</label>
-                            <input type="text" id="cun-name">
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="cun">Country<span>*</span></label>
-                            <input type="text" id="cun">
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="street">Street Address<span>*</span></label>
-                            <input type="text" id="street" class="street-first">
-                            <input type="text">
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="zip">Postcode / ZIP (optional)</label>
-                            <input type="text" id="zip">
-                        </div>
-                        <div class="col-lg-12">
-                            <label for="town">Town / City<span>*</span></label>
-                            <input type="text" id="town">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="email">Email Address<span>*</span></label>
-                            <input type="text" id="email">
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="phone">Phone<span>*</span></label>
-                            <input type="text" id="phone">
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="create-item">
-                                <label for="acc-create">
-                                    Create an account?
-                                    <input type="checkbox" id="acc-create">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="checkout-content">
-                        <input type="text" placeholder="Enter Your Coupon Code">
-                    </div>
                     <div class="place-order">
                         <h4>Your Order</h4>
                         <div class="order-total">
                             <ul class="order-table">
                                 <li>Product <span>Total</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                <li class="total-price">Total <span>$240.00</span></li>
+                                <c:forEach items="${cart}" var="cart">
+                                    <li class="fw-normal">${cart.value.product.productName} x ${cart.value.quantity}
+                                        <span>$${cart.value.totalPrice}</span></li>
+                                </c:forEach>
+                                <li class="total-price">Total <span>$${TotalPriceCart}</span></li>
                             </ul>
                             <div class="payment-check">
                                 <div class="pc-item">
@@ -152,7 +176,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form:form>
     </div>
 </section>
 <!-- Shopping Cart Section End -->

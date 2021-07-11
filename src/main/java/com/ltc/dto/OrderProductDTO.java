@@ -8,13 +8,17 @@ public class OrderProductDTO extends BaseDTO{
 
     private Long total;
 
-    private Long orderId;
-
-    private Long productId;
-
     private Order order;
 
     private Product product;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
 
     public void setOrder(Order order) {
         this.order = order;
@@ -40,19 +44,4 @@ public class OrderProductDTO extends BaseDTO{
         this.total = total;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
 }

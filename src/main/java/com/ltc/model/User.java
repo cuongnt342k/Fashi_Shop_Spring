@@ -23,7 +23,6 @@ public class User extends BaseModel {
     @Column(name = "description")
     private String description;
 
-
     @Column(name = "status")
     private Integer status;
 

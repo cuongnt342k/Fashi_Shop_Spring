@@ -50,7 +50,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("validation");
+        messageSource.setBasename("i18n/validation");
         messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;
     }

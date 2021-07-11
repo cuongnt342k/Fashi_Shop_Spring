@@ -11,7 +11,7 @@ public interface CartServices {
 
     public HashMap<Long,CartDTO> deleteCart(Long id, HashMap<Long, CartDTO> cart);
 
-    public int totalQuantity(HashMap<Long, CartDTO> cart);
+    public Long totalQuantity(HashMap<Long, CartDTO> cart);
 
-    public double totalPrice(HashMap<Long, CartDTO> cart);
+    public Long totalPrice(HashMap<Long, CartDTO> cart);
 }

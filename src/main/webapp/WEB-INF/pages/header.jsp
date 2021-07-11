@@ -19,18 +19,6 @@
                 </div>
             </div>
             <div class="ht-right">
-                <%--                <div class="lan-selector">--%>
-                <%--                    <select class="language_drop" name="countries" style="width:300px;">--%>
-                <%--                        <option value='yt' data-image="<c:url value="/template/img/flag-1.jpg"/> "--%>
-                <%--                                data-imagecss="flag yt"--%>
-                <%--                                data-title="English">English--%>
-                <%--                        </option>--%>
-                <%--                        <option value='yu' data-image="<c:url value="/template/img/flag-2.jpg"/>"--%>
-                <%--                                data-imagecss="flag yu"--%>
-                <%--                                data-title="Bangladesh">German--%>
-                <%--                        </option>--%>
-                <%--                    </select>--%>
-                <%--                </div>--%>
                 <security:authorize access="isAnonymous()">
                     <a href="<c:url value="/registration"/>" class="login-panel">Register</a>
                     <a href="<c:url value="/login"/>" class="login-panel" style="padding-right: 15px"><i class="fa fa-user"></i> Login </a>

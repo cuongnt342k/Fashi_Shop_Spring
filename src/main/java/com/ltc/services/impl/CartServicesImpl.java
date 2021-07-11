@@ -41,7 +41,7 @@ public class CartServicesImpl implements CartServices {
         CartDTO itemCart = new CartDTO();
         itemCart = cart.get(cartId);
         itemCart.setQuantity(quantity);
-        double totalPrice = quantity * itemCart.getProduct().getPrice();
+        Long totalPrice = quantity * itemCart.getProduct().getPrice();
         itemCart.setTotalPrice(totalPrice);
         cart.put(cartId, itemCart);
         return cart;
@@ -59,8 +59,8 @@ public class CartServicesImpl implements CartServices {
     }
 
     @Override
-    public int totalQuantity(HashMap<Long, CartDTO> cart) {
-        int totalQuanty = 0;
+    public Long totalQuantity(HashMap<Long, CartDTO> cart) {
+        Long totalQuanty = Long.valueOf(0);
         for (Map.Entry<Long, CartDTO> itemCart : cart.entrySet()) {
             totalQuanty += itemCart.getValue().getQuantity();
         }
@@ -68,8 +68,8 @@ public class CartServicesImpl implements CartServices {
     }
 
     @Override
-    public double totalPrice(HashMap<Long, CartDTO> cart) {
-        double totalPrice = 0;
+    public Long totalPrice(HashMap<Long, CartDTO> cart) {
+        Long totalPrice = Long.valueOf(0);
         for (Map.Entry<Long, CartDTO> itemCart : cart.entrySet()) {
             totalPrice += itemCart.getValue().getTotalPrice();
         }

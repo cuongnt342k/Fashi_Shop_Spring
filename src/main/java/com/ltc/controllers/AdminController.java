@@ -12,7 +12,7 @@ public class AdminController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView loginPage() {
-        ModelAndView mav = new ModelAndView("admin");
+        ModelAndView mav = new ModelAndView("admin/home");
         return mav;
     }
 

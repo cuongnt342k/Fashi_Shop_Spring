@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="register-form">
-                    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+                    <form:form method="post" modelAttribute="userForm" class="form-signin">
                         <h2>Register</h2>
                         <spring:bind path="username">
                             <div class="group-input ${status.error ? 'has-error' : ''}">
