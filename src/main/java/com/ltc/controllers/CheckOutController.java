@@ -43,7 +43,7 @@ public class CheckOutController {
     public String saveOrder(HttpServletRequest request, HttpSession session, @ModelAttribute("orders") OrderDTO orderDTOs) throws Exception {
         orderDTOs.setTotalPrice((Long) session.getAttribute("TotalPriceCart"));
         orderDTOs.setTotalQuantity((Long) session.getAttribute("TotalQuantityCart"));
-
+        orderDTOs.setPaymentType(request.getParameter("payment_type"));
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         List<OrderProductDTO> orderProductDTOS = new ArrayList<>();
         for (Map.Entry<Long, CartDTO> items: cart.entrySet()) {

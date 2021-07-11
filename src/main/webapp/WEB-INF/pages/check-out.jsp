@@ -157,14 +157,12 @@
                                 <div class="pc-item">
                                     <label for="pc-check">
                                         Cheque Payment
-                                        <input type="checkbox" id="pc-check">
+                                        <input type="radio" id="pc-check" name="payment_type" value="Cheque Payment">
                                         <span class="checkmark"></span>
                                     </label>
-                                </div>
-                                <div class="pc-item">
                                     <label for="pc-paypal">
                                         Paypal
-                                        <input type="checkbox" id="pc-paypal">
+                                        <input type="radio" id="pc-paypal" name="payment_type" value="Paypal">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
