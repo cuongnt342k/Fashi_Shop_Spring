@@ -13,7 +13,7 @@ import org.springframework.validation.Validator;
 
 @Component
 @PropertySource({
-        "classpath:i18n/validation.properties"
+        "classpath:/i18n/validation.properties"
 })
 public class UserValidator implements Validator {
     @Autowired
@@ -31,21 +31,21 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", env.getProperty("NotEmpty"));
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", null, env.getProperty("NotEmpty"));
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", env.getProperty("Size.userForm.username"));
+            errors.rejectValue("username", null, env.getProperty("Size.userForm.username"));
         }
         if (userService.findByUserNameAndStatus(user.getUsername(),Const.STATUS.ACTIVCE) != null) {
-            errors.rejectValue("username", env.getProperty("Duplicate.userForm.username"));
+            errors.rejectValue("username",null , env.getProperty("Duplicate.userForm.username"));
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", env.getProperty("NotEmpty"));
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", env.getProperty("Size.userForm.password"));
+            errors.rejectValue("password", null, env.getProperty("Size.userForm.password"));
         }
 
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", env.getProperty("Diff.userForm.passwordConfirm"));
+            errors.rejectValue("passwordConfirm", null, env.getProperty("Diff.userForm.passwordConfirm"));
         }
     }
 }

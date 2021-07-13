@@ -5,10 +5,11 @@ import com.ltc.dto.OrderDTO;
 import com.ltc.dto.OrderProductDTO;
 import com.ltc.services.CartServices;
 import com.ltc.services.CheckOutServices;
-import com.ltc.services.OrderDetailServices;
 import com.ltc.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +42,12 @@ public class CheckOutController {
     }
 
     @PostMapping
-    public String saveOrder(HttpServletRequest request, HttpSession session, @ModelAttribute("orders") OrderDTO orderDTOs) throws Exception {
+    public String saveOrder(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors) throws Exception {
+        if (errors.hasErrors()){
+            return "check-out";
+        }
         orderDTOs.setTotalPrice((Long) session.getAttribute("TotalPriceCart"));
         orderDTOs.setTotalQuantity((Long) session.getAttribute("TotalQuantityCart"));
-        orderDTOs.setPaymentType(request.getParameter("payment_type"));
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         List<OrderProductDTO> orderProductDTOS = new ArrayList<>();
         for (Map.Entry<Long, CartDTO> items: cart.entrySet()) {

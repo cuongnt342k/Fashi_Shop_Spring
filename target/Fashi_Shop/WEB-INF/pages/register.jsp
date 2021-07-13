@@ -69,8 +69,8 @@
                         <spring:bind path="username">
                             <div class="group-input ${status.error ? 'has-error' : ''}">
                                 <form:input type="text" path="username" class="form-control" placeholder="Username"
-                                            autofocus="true"></form:input>
-                                <form:errors path="username"></form:errors>
+                                            autofocus="true"/>
+                                <form:errors path="username"/>
                             </div>
                         </spring:bind>
 

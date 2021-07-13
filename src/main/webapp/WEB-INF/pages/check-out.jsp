@@ -70,12 +70,14 @@
                         <spring:bind path="customerFirstName">
                             <div class="col-lg-6">
                                 <label for="fir">First Name<span>*</span></label>
+                                <form:errors path="customerFirstName"/>
                                 <form:input type="text" id="fir" path="customerFirstName"/>
                             </div>
                         </spring:bind>
                         <spring:bind path="customerLastName">
                             <div class="col-lg-6">
                                 <label for="last">Last Name<span>*</span></label>
+                                <form:errors path="customerLastName"/>
                                 <form:input type="text" id="last" name="last_name" path="customerLastName"/>
                             </div>
                         </spring:bind>
@@ -84,6 +86,7 @@
                         <spring:bind path="companyName">
                             <div class="col-lg-12">
                                 <label for="cun-name">Company Name</label>
+                                <form:errors path="companyName"/>
                                 <form:input type="text" id="cun-name" name="company_name" path="companyName"/>
                             </div>
                         </spring:bind>
@@ -92,6 +95,7 @@
                         <spring:bind path="country">
                             <div class="col-lg-12">
                                 <label for="cun">Country<span>*</span></label>
+                                <form:errors path="country"/>
                                 <form:input type="text" id="cun" name="country" path="country"/>
                             </div>
                         </spring:bind>
@@ -100,6 +104,7 @@
                         <spring:bind path="street_address">
                             <div class="col-lg-12">
                                 <label for="street">Street Address<span>*</span></label>
+                                <form:errors path="street_address"/>
                                 <form:input type="text" id="street" class="street-first" name="street_address"
                                             path="street_address"/>
                             </div>
@@ -109,7 +114,8 @@
                         <spring:bind path="postCode">
                             <div class="col-lg-12">
                                 <label for="zip">Postcode / ZIP (optional)</label>
-                                <form:input type="text" id="zip" name="post_code" path="postCode"/>
+                                <form:errors path="postCode"/>
+                                <form:input type="number" id="zip" name="post_code" path="postCode"/>
                             </div>
                         </spring:bind>
 
@@ -117,6 +123,7 @@
                         <spring:bind path="city">
                             <div class="col-lg-12">
                                 <label for="town">Town / City<span>*</span></label>
+                                <form:errors path="city"/>
                                 <form:input type="text" id="town" name="town" path="city"/>
                             </div>
                         </spring:bind>
@@ -125,6 +132,7 @@
                         <spring:bind path="email">
                             <div class="col-lg-6">
                                 <label for="email">Email Address<span>*</span></label>
+                                <form:errors path="email"/>
                                 <form:input type="text" id="email" name="email" path="email"/>
                             </div>
                         </spring:bind>
@@ -133,7 +141,8 @@
                         <spring:bind path="phoneNumber">
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>
-                                <form:input type="text" id="phone" name="phone" path="phoneNumber"/>
+                                <form:errors path="phoneNumber" cssStyle="color: red"/>
+                                <form:input type="number" id="phone" name="phone" path="phoneNumber"/>
                             </div>
                         </spring:bind>
 
@@ -154,18 +163,20 @@
                                 <li class="total-price">Total <span>$${TotalPriceCart}</span></li>
                             </ul>
                             <div class="payment-check">
-                                <div class="pc-item">
-                                    <label for="pc-check">
-                                        Cheque Payment
-                                        <input type="radio" id="pc-check" name="payment_type" value="Cheque Payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label for="pc-paypal">
-                                        Paypal
-                                        <input type="radio" id="pc-paypal" name="payment_type" value="Paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+                                <spring:bind path="paymentType">
+                                    <div class="pc-item">
+                                        <label for="pc-check">
+                                            Cheque Payment
+                                            <form:radiobutton path="paymentType" itemValue="Cheque Payment" id="pc-check"/>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label for="pc-paypal">
+                                            Paypal
+                                            <form:radiobutton path="paymentType" itemValue="Paypal" id="pc-paypal"/>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </spring:bind>
                             </div>
                             <div class="order-btn">
                                 <button type="submit" class="site-btn place-btn">Place Order</button>

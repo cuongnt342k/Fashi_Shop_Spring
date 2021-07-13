@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,18 +37,17 @@ public class OrderDTO extends BaseDTO{
     @NotBlank
     private String street_address;
 
-    @NotBlank
+    @NotNull
     private Long postCode;
 
     @NotBlank
     private String city;
 
     @NotBlank
+    @Email
     private String email;
 
-    @NotBlank
-    @Length(max = 10)
-    @NumberFormat
+    @NotNull
     private Long phoneNumber;
 
     private Long userId;
