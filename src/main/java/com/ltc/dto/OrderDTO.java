@@ -19,7 +19,6 @@ public class OrderDTO extends BaseDTO{
 
     private Long totalPrice;
 
-    @NotBlank
     private String paymentType;
 
     @NotBlank

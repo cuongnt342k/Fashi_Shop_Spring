@@ -1,9 +1,7 @@
 <%@ page import="com.ltc.utils.SecurityUtils" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!-- Header Section Begin -->
 <header class="header-section">
     <div class="header-top">
@@ -19,6 +17,18 @@
                 </div>
             </div>
             <div class="ht-right">
+                <%--                <div class="lan-selector">--%>
+                <%--                    <select class="language_drop" name="countries" style="width:300px;">--%>
+                <%--                        <option value='yt' data-image="<c:url value="/template/img/flag-1.jpg"/> "--%>
+                <%--                                data-imagecss="flag yt"--%>
+                <%--                                data-title="English">English--%>
+                <%--                        </option>--%>
+                <%--                        <option value='yu' data-image="<c:url value="/template/img/flag-2.jpg"/>"--%>
+                <%--                                data-imagecss="flag yu"--%>
+                <%--                                data-title="Bangladesh">German--%>
+                <%--                        </option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
                 <security:authorize access="isAnonymous()">
                     <a href="<c:url value="/registration"/>" class="login-panel">Register</a>
                     <a href="<c:url value="/login"/>" class="login-panel" style="padding-right: 15px"><i class="fa fa-user"></i> Login </a>
@@ -127,7 +137,7 @@
                                 <div class="select-button">
                                     <a href="<c:url value="/shopping-cart"/>" class="primary-btn view-card">VIEW
                                         CARD</a>
-                                    <a href="<c:url value="/check-out"/>" class="primary-btn checkout-btn">CHECK
+                                    <a href="${contextPath}/check-out" class="primary-btn checkout-btn">CHECK
                                         OUT</a>
                                 </div>
                             </div>
@@ -178,7 +188,7 @@
                     <li><a href="#">Pages</a>
                         <ul class="dropdown">
                             <li><a href="<c:url value="/shopping-cart"/> ">Shopping Cart</a></li>
-                            <li><a href="<c:url value="/check-out"/>">Checkout</a></li>
+                            <li><a href="${contextPath}/check-out">Checkout</a></li>
                             <li><a href="<c:url value="/faq"/>">Faq</a></li>
                             <li><a href="<c:url value="/registration"/>">Register</a></li>
                             <li><a href="<c:url value="/login"/>">Login</a></li>

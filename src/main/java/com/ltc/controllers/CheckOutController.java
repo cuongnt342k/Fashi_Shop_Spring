@@ -8,10 +8,8 @@ import com.ltc.services.CheckOutServices;
 import com.ltc.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,9 +39,9 @@ public class CheckOutController {
         return mav;
     }
 
-    @PostMapping
+    @RequestMapping(value = "/check-out", method = RequestMethod.POST)
     public String saveOrder(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors) throws Exception {
-        if (errors.hasErrors()){
+        if (errors.hasErrors() == true){
             return "check-out";
         }
         orderDTOs.setTotalPrice((Long) session.getAttribute("TotalPriceCart"));

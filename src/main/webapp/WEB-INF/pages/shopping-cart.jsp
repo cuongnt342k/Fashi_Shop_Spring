@@ -84,13 +84,13 @@
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="number" value="${cart.value.quantity}" name="quantity">
+                                                <input type="text" value="${cart.value.quantity}" name="quantity">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="total-price first-row">$${cart.value.totalPrice}</td>
 
-                                    <td class="close-td first-row"><a href="<c:url value="/deleteCart/${cart.key}"/>"><i class="ti-close"></i></a></td>
+                                    <td class="close-td first-row"><a href=" <c:url value="/deleteCart/${cart.key}"/>"><i class="ti-close"></i></a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -101,7 +101,15 @@
                             <div class="cart-buttons">
                                 <a href="<c:url value="/shop?page=0&size=6"/>" class="primary-btn continue-shop">Continue shopping</a>
                                 <input class="primary-btn up-cart" value="Update cart" type="submit">
+                                <%--                            <a href="<c:url value="/editCart?"/>" class="primary-btn up-cart">Update cart</a>--%>
                             </div>
+                            <%--                        <div class="discount-coupon">--%>
+                            <%--                            <h6>Discount Codes</h6>--%>
+                            <%--                            <form action="#" class="coupon-form">--%>
+                            <%--                                <input type="text" placeholder="Enter your codes">--%>
+                            <%--                                <button type="submit" class="site-btn coupon-btn">Apply</button>--%>
+                            <%--                            </form>--%>
+                            <%--                        </div>--%>
                         </div>
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
@@ -109,7 +117,7 @@
                                     <li class="subtotal">Subtotal <span>$${TotalPriceCart}</span></li>
                                     <li class="cart-total">Total <span>$${TotalPriceCart}</span></li>
                                 </ul>
-                                <a href="<c:url value="/check-out"/>" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                <a href="${contextPath}/check-out" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
                         </div>
                     </div>
