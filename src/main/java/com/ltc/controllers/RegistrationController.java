@@ -31,17 +31,17 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public ModelAndView registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("register");
+            return "register";
         }
 
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return new ModelAndView("shop");
+        return "redirect:/";
     }
 }

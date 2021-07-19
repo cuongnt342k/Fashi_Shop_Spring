@@ -40,7 +40,7 @@ public class CheckOutController {
     }
 
     @RequestMapping(value = "/check-out", method = RequestMethod.POST)
-    public String saveOrder(HttpServletRequest request, HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors) throws Exception {
+    public String saveOrder(HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors) throws Exception {
         if (errors.hasErrors() == true){
             return "check-out";
         }

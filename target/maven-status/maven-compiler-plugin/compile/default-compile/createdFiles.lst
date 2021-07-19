@@ -11,6 +11,7 @@ com\ltc\dto\BaseDTO.class
 com\ltc\services\OrderDetailServices.class
 com\ltc\services\CategoryServices.class
 com\ltc\repo\CheckOutRepo.class
+com\ltc\dto\UserDTO.class
 com\ltc\repo\CategoryRepo.class
 com\ltc\dto\CategoriesDTO.class
 com\ltc\controllers\ContactController.class
@@ -19,6 +20,7 @@ com\ltc\config\SpringWebConfig.class
 com\ltc\services\CartServices.class
 com\ltc\services\impl\CartServicesImpl.class
 com\ltc\services\SecurityService.class
+com\ltc\controllers\admin\UserManagementController.class
 com\ltc\utils\SecurityUtils.class
 com\ltc\config\hibernate\PersistenceJPAConfig.class
 com\ltc\services\CheckOutServices.class
@@ -36,7 +38,6 @@ com\ltc\controllers\CheckOutController.class
 com\ltc\model\Role.class
 com\ltc\repo\impl\CartRepoImpl.class
 com\ltc\model\Categories.class
-com\ltc\controllers\AdminController.class
 com\ltc\repo\BaseRepository.class
 com\ltc\controllers\FaqControlller.class
 com\ltc\dto\ProductDTO.class
@@ -49,6 +50,7 @@ com\ltc\utils\Const.class
 com\ltc\services\ProductServices.class
 com\ltc\repo\ProductRepoCustom.class
 com\ltc\services\impl\SecurityServiceImpl.class
+com\ltc\controllers\admin\OrderManagementController.class
 com\ltc\dto\OrderProductDTO.class
 com\ltc\model\Product.class
 com\ltc\controllers\RegistrationController.class
@@ -57,5 +59,6 @@ com\ltc\repo\CartRepo.class
 com\ltc\repo\impl\ProductRepoImpl.class
 com\ltc\services\impl\UserServiceImpl.class
 com\ltc\dto\MyUser.class
+com\ltc\controllers\admin\AdminController.class
 com\ltc\controllers\LoginController.class
 com\ltc\validator\UserValidator.class

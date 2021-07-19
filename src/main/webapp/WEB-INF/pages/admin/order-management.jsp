@@ -7,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page import="com.ltc.utils.SecurityUtils" %>
+
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +35,8 @@
 
     <!-- Custom styles for this page -->
     <link href="<c:url value="/template/vendor/datatables/dataTables.bootstrap4.min.css"/>" rel="stylesheet">
+
+    <link href="<c:url value="/template/css/bootstrap4-toggle.min.css"/>" rel="stylesheet">
 
 </head>
 
@@ -157,6 +163,7 @@
 <!-- Page level custom scripts -->
 <script src="<c:url value="/template/js/demo/datatables-demo.js"/>"></script>
 
+<script src="<c:url value="/template/js/bootstrap4-toggle.min.js"/>"></script>
 </body>
 
 </html>

@@ -141,7 +141,7 @@
                         <spring:bind path="phoneNumber">
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>
-                                <form:errors path="phoneNumber" cssStyle="color: red"/>
+                                <form:errors path="phoneNumber" cssStyle="color: #ff0000"/>
                                 <form:input type="number" id="phone" name="phone" path="phoneNumber"/>
                             </div>
                         </spring:bind>

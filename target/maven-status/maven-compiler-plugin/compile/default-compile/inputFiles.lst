@@ -6,7 +6,7 @@ C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\services\CartServi
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\BaseRepository.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\dto\BaseDTO.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\validator\UserValidator.java
-C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\AdminController.java
+C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\admin\OrderManagementController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\model\Order.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\ShoppingCartController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\impl\ProductRepoImpl.java
@@ -32,7 +32,9 @@ C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\services\impl\Secu
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\dto\MyUser.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\ContactController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\RegistrationController.java
+C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\admin\UserManagementController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\dto\OrderDTO.java
+C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\admin\AdminController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\controllers\LoginController.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\model\OrderProduct.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\CartRepo.java
@@ -42,6 +44,7 @@ C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\model\Categories.j
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\CheckOutRepo.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\OrderDetailsRepo.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\repo\UserRepo.java
+C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\dto\UserDTO.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\model\Product.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\security\CustomSuccessHandler.java
 C:\Users\Trong Cuong\Desktop\Fashi_Shop\src\main\java\com\ltc\validator\PaymentValidator.java
