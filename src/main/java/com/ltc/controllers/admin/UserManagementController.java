@@ -4,12 +4,10 @@ import com.ltc.dto.UserDTO;
 import com.ltc.services.UserService;
 import com.ltc.utils.SecurityUtils;
 import com.ltc.validator.UserDTOValidator;
-import com.ltc.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,4 +35,28 @@ public class UserManagementController {
         mav.addObject("User",new UserDTO());
         return mav;
     }
+    @RequestMapping(value = "/add-user", method = RequestMethod.POST)
+    public String addUserPage(HttpServletRequest request, @Valid @ModelAttribute("User") UserDTO userDTO, BindingResult bindingResult, Model mav) throws Exception {
+        List<UserDTO> userDTOS = userService.findAll(false);
+        userDTOValidator.validate(userDTO, bindingResult);
+        mav.addAttribute("listUser",userDTOS);
+        if (bindingResult.hasErrors()) {
+            return "admin/user-management";
+        }
+        String roleName = request.getParameter("role");
+        userService.saveOrUpdate(userDTO, SecurityUtils.getPrincipal().getUsername(),roleName);
+        userDTOS = userService.findAll(false);
+        mav.addAttribute("listUser",userDTOS);
+        return "redirect:/admin/user-management";
+    }
+
+    @RequestMapping(value = "/delete-user", method = RequestMethod.POST)
+    public String deleteUserPage(HttpServletRequest request, Model mav) throws Exception {
+        Long id = Long.valueOf(request.getParameter("id"));
+        userService.deleteUser(id, SecurityUtils.getPrincipal().getUsername());
+        List<UserDTO> userDTOS = userService.findAll(false);
+        mav.addAttribute("listUser",userDTOS);
+        return "redirect:/admin/user-management";
+    }
+
 }

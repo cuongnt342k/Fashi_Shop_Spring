@@ -303,9 +303,6 @@
 <!-- Scroll to Top Button-->
 <%@include file="logout-modal.jsp" %>
 
-<button id="1" name="1" value="1">Button1</button>
-<button id="2" name="2" value="2">Button2</button>
-
 <script type="text/javascript">
     $("table button ").click(function() {
         var id = $(this).val();
