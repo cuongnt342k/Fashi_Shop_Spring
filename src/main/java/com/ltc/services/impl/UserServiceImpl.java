@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO findById(Long id) {
+        return mapper.toDtoBean(userRepository.findById(id));
+    }
+
+    @Override
     public List<UserDTO> findAll(Boolean deleted) throws Exception {
         List<User> users = userRepository.findAllByDeleted(deleted);
         return mapper.toDtoBean(users);
@@ -84,14 +89,18 @@ public class UserServiceImpl implements UserService {
             userDTO.setUpdatedDate(currentDate);
             userDTO.setStatus(Const.STATUS.ACTIVCE);
         } else {
+            User user = userRepository.findById(userDTO.getId());
             userDTO.setUpdatedBy(username);
             userDTO.setUpdatedDate(currentDate);
-            userDTO.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+            userDTO.setDeleted(user.getDeleted());
+            userDTO.setStatus(user.getStatus());
+            userDTO.setPassword(user.getPassword());
         }
         User user = new User();
-        user.setRoles(new HashSet<>(roleRepository.findRoleByRoleName(roleName)));
 
         BeanUtils.copyProperties(userDTO, user);
+
+        user.setRoles(new HashSet<>(roleRepository.findRoleByRoleName(roleName)));
 
         userRepository.saveAndFlush(user);
 

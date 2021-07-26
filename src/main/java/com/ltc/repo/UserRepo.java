@@ -11,5 +11,7 @@ public interface UserRepo extends BaseRepository<User,Long>{
 
     User findByEmail(String email);
 
+    User findById(Long id);
+
     List<User> findAllByDeleted(Boolean deleted) throws Exception;
 }

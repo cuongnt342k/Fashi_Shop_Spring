@@ -157,45 +157,55 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form:form method="post" modelAttribute="User"
+                                           action="${contextPath}/admin/user-management/update-user">
                                     <div class="form-row">
+                                        <spring:bind path="username">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputUpdateUserName">User name</label>
+                                                <form:input type="text" class="form-control" id="inputUpdateUserName"
+                                                            path="username"/>
+                                                <form:errors path="username"/>
+                                            </div>
+
+                                        </spring:bind>
                                         <div class="form-group col-md-6">
-                                            <label for="inputUpdateUser">User name</label>
-                                            <input type="text" class="form-control" id="inputUpdateUser"
-                                                   placeholder="User name">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputUpdatePassword4">Password</label>
-                                            <input type="password" class="form-control" id="inputUpdatePassword4"
-                                                   placeholder="Password">
+                                            <label for="inputUpdateRole">Role</label>
+                                            <select id="inputUpdateRole" class="form-control" name="roleUpdate">
+                                                <option value="ADMIN">Admin</option>
+                                                <option VALUE="USER" selected>User</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="inputUpdateEmail">Email</label>
-                                        <input type="email" class="form-control" id="inputUpdateEmail"
-                                               placeholder="abc123@gmail.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputUpdateAddress">Full name</label>
-                                        <input type="text" class="form-control" id="inputUpdateAddress"
-                                               placeholder="Nguyễn Trọng Cường">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputUpdateDescription">Description</label>
-                                        <input type="text" class="form-control" id="inputUpdateDescription"
-                                               placeholder="Some thing about you">
-                                    </div>
-                                    <div class="form-row">
-                                        <label for="inputUpdateState">Role</label>
-                                        <select id="inputUpdateState" class="form-control">
-                                            <option>Admin</option>
-                                            <option selected>User</option>
-                                        </select>
-                                    </div>
+                                    <spring:bind path="email">
+                                        <div class="form-group">
+                                            <label for="inputUpdateEmail">Email</label>
+                                            <form:input type="email" class="form-control" id="inputUpdateEmail"
+                                                        path="email" placeholder="abc123@gmail.com"/>
+                                            <form:errors path="email"/>
+                                        </div>
+                                    </spring:bind>
+                                    <spring:bind path="fullName">
+                                        <div class="form-group">
+                                            <label for="inputUpdateFullName">Full name</label>
+                                            <form:input type="text" class="form-control" id="inputUpdateFullName"
+                                                        path="fullName" placeholder="Nguyễn Trọng Cường"/>
+                                            <form:errors path="fullName"/>
+                                        </div>
+                                    </spring:bind>
+                                    <spring:bind path="description">
+                                        <div class="form-group">
+                                            <label for="inputUpdateDescription">Description</label>
+                                            <form:input type="text" class="form-control" id="inputUpdateDescription"
+                                                        path="description" placeholder="Some thing about you"/>
+                                            <form:errors path="description"/>
+                                        </div>
+                                    </spring:bind>
                                     <hr/>
-                                    <button type="submit" class="btn btn-warning">Save changes</button>
+                                    <input type="submit" class="btn btn-warning" value="Save changes">
+                                    <input type="hidden" name="idUpdate" id="idUpdate">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </form>
+                                </form:form>
                             </div>
                         </div>
                     </div>
@@ -218,7 +228,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <input type="submit" class="btn btn-danger" value="Delete"/>
-                                    <input type="hidden" name="id" id="id">
+                                    <input type="hidden" name="idDelete" id="idDelete">
                                 </div>
                             </form>
                         </div>
@@ -269,7 +279,7 @@
                                                    data-size="xs">
                                         </td>
                                         <td>
-                                            <button data-target="#updateModal" data-toggle="modal" class="btn btn-warning"><i
+                                            <button value="${user.id}" id="updateUser" data-target="#updateModal" data-toggle="modal" class="btn btn-warning updateUser" ><i
                                                     class="fas fa-pencil-alt"></i>
                                             </button>
                                             <button value="${user.id}" id="deleteUser" data-target="#deleteModal" data-toggle="modal" class="btn btn-danger deleteUser" ><i
@@ -303,13 +313,25 @@
 <!-- Scroll to Top Button-->
 <%@include file="logout-modal.jsp" %>
 
-<button id="1" name="1" value="1">Button1</button>
-<button id="2" name="2" value="2">Button2</button>
-
 <script type="text/javascript">
     $("table button ").click(function() {
-        var id = $(this).val();
-        $('#deleteModal #id').val(id);
+        var idDelete = $(this).val();
+        $('#deleteModal #idDelete').val(idDelete);
+    });
+    $("table button ").click(function() {
+        var idUpdate = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '${contextPath}/api/user/find/'+ idUpdate,
+            success: function (user) {
+                $('#updateModal #idUpdate').val(user.id);
+                $('#updateModal #inputUpdateUserName').val(user.username);
+                $('#updateModal #inputUpdateFullName').val(user.fullName);
+                $('#updateModal #inputUpdateDescription').val(user.description);
+                $('#updateModal #inputUpdateEmail').val(user.email);
+                $('#updateModal #inputUpdateRole').val(user.roles[0].roleName).attr('selected','selected');
+            }
+        })
     });
 </script>
 <!-- Bootstrap core JavaScript-->

@@ -1,8 +1,8 @@
 package com.ltc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,7 +11,8 @@ public class Role extends BaseModel{
     @Column(name = "role_name", length = 30, nullable = false)
     private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<User> users;
 
     public Role(String roleName) {

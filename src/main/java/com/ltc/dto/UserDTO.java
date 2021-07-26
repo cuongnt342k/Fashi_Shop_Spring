@@ -1,17 +1,16 @@
 package com.ltc.dto;
 
-import org.hibernate.validator.constraints.Email;
+import com.ltc.model.Role;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Set;
 
 public class UserDTO extends BaseDTO {
 
     @NotBlank
     private String userName;
 
-    @NotBlank
+    //    @NotBlank
     private String password;
 
     @NotBlank
@@ -24,17 +23,29 @@ public class UserDTO extends BaseDTO {
 
     private Integer status;
 
+    private Set<Role> roles;
+
     public UserDTO() {
     }
 
-    public UserDTO(String userName, String password, String email, String fullName, String description, Integer status) {
+    public UserDTO(String userName, String password, String email, String fullName, String description, Integer status, Set<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.description = description;
         this.status = status;
+        this.roles = roles;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public String getUsername() {
         return userName;
     }

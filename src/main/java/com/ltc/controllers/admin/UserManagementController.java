@@ -31,31 +31,49 @@ public class UserManagementController {
     public ModelAndView userManagementPage() throws Exception {
         List<UserDTO> userDTOS = userService.findAll(false);
         ModelAndView mav = new ModelAndView("admin/user-management");
-        mav.addObject("listUser",userDTOS);
-        mav.addObject("User",new UserDTO());
+        mav.addObject("listUser", userDTOS);
+        mav.addObject("User", new UserDTO());
         return mav;
     }
+
     @RequestMapping(value = "/add-user", method = RequestMethod.POST)
     public String addUserPage(HttpServletRequest request, @Valid @ModelAttribute("User") UserDTO userDTO, BindingResult bindingResult, Model mav) throws Exception {
         List<UserDTO> userDTOS = userService.findAll(false);
         userDTOValidator.validate(userDTO, bindingResult);
-        mav.addAttribute("listUser",userDTOS);
+        mav.addAttribute("listUser", userDTOS);
         if (bindingResult.hasErrors()) {
             return "admin/user-management";
         }
         String roleName = request.getParameter("role");
-        userService.saveOrUpdate(userDTO, SecurityUtils.getPrincipal().getUsername(),roleName);
+        userService.saveOrUpdate(userDTO, SecurityUtils.getPrincipal().getUsername(), roleName);
         userDTOS = userService.findAll(false);
-        mav.addAttribute("listUser",userDTOS);
+        mav.addAttribute("listUser", userDTOS);
+        return "redirect:/admin/user-management";
+    }
+
+    @RequestMapping(value = "/update-user", method = RequestMethod.POST)
+    public String updateUserPage(HttpServletRequest request, @Valid @ModelAttribute("User") UserDTO userDTO, BindingResult bindingResult, Model mav) throws Exception {
+        Long id = Long.valueOf(request.getParameter("idUpdate"));
+        userDTO.setId(id);
+        List<UserDTO> userDTOS = userService.findAll(false);
+//        userDTOValidator.validate(userDTO, bindingResult);
+        mav.addAttribute("listUser", userDTOS);
+        if (bindingResult.hasErrors()) {
+            return "admin/user-management";
+        }
+        String roleName = request.getParameter("roleUpdate");
+        userService.saveOrUpdate(userDTO, SecurityUtils.getPrincipal().getUsername(), roleName);
+        userDTOS = userService.findAll(false);
+        mav.addAttribute("listUser", userDTOS);
         return "redirect:/admin/user-management";
     }
 
     @RequestMapping(value = "/delete-user", method = RequestMethod.POST)
     public String deleteUserPage(HttpServletRequest request, Model mav) throws Exception {
-        Long id = Long.valueOf(request.getParameter("id"));
+        Long id = Long.valueOf(request.getParameter("idDelete"));
         userService.deleteUser(id, SecurityUtils.getPrincipal().getUsername());
         List<UserDTO> userDTOS = userService.findAll(false);
-        mav.addAttribute("listUser",userDTOS);
+        mav.addAttribute("listUser", userDTOS);
         return "redirect:/admin/user-management";
     }
 

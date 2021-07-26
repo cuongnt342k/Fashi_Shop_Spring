@@ -1,7 +1,5 @@
 package com.ltc.services;
 
-import com.ltc.dto.OrderDTO;
-import com.ltc.dto.OrderProductDTO;
 import com.ltc.dto.UserDTO;
 import com.ltc.model.User;
 
@@ -16,9 +14,12 @@ public interface UserService {
 
     User findByEmail(String email);
 
+    UserDTO findById(Long id);
+
     List<UserDTO> findAll(Boolean deleted) throws Exception;
 
     public void deleteUser(Long userId, String username) throws Exception;
 
     public UserDTO saveOrUpdate(UserDTO userDTO, String username,String roleName) throws Exception;
+
 }
