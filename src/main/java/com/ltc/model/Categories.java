@@ -1,9 +1,6 @@
 package com.ltc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,7 @@ public class Categories extends BaseModel{
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "categories")
+    @OneToMany(mappedBy = "categories",cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
     public List<Product> getProducts() {

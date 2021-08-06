@@ -71,13 +71,13 @@
                         <div class="product-thumbs">
                             <div class="product-thumbs-track ps-slider owl-carousel">
                                 <div class="pt active" data-imgbigurl="img/product-single/product-1.jpg"><img
-                                        src="<c:url value="/template/${product.img}"/>" alt=""></div>
+                                        src="<c:url value="/template/img/products/${product.img}"/>" alt=""></div>
                                 <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                        src="<c:url value="/template/${product.img}"/>" alt=""></div>
+                                        src="<c:url value="/template/img/products/${product.img}"/>" alt=""></div>
                                 <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                        src="<c:url value="/template/${product.img}"/>" alt=""></div>
+                                        src="<c:url value="/template/img/products/${product.img}"/>" alt=""></div>
                                 <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                        src="<c:url value="/template/${product.img}"/>" alt=""></div>
+                                        src="<c:url value="/template/img/products/${product.img}"/>" alt=""></div>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                     </div>
                                     <input name="id" type="hidden" value="${product.id}" class="primary-btn pd-cart">
                                     <input type="submit" value="Add To Cart" class="primary-btn pd-cart">
-<%--                                    <a href="<c:url value="/addCart?id=${product.id}"/>" class="primary-btn pd-cart"> Add To Cart</a>--%>
+                                    <%--                                    <a href="<c:url value="/addCart?id=${product.id}"/>" class="primary-btn pd-cart"> Add To Cart</a>--%>
                                 </div>
                                 <div class="pd-share">
                                     <div class="p-code">Sku : ${product.id}</div>

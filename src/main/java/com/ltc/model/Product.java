@@ -26,7 +26,7 @@ public class Product extends BaseModel {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     Categories categories = new Categories();
 
@@ -82,4 +82,13 @@ public class Product extends BaseModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Categories getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Categories categories) {
+        this.categories = categories;
+    }
 }
+

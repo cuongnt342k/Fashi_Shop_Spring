@@ -82,7 +82,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="<c:url value="/template/${product.img}"/>" alt="">
+                                        <img src="<c:url value="/template/img/products/${product.img}"/>" alt="">
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>

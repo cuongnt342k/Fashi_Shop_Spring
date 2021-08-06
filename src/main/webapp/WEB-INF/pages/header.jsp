@@ -113,7 +113,7 @@
                                         <c:forEach items="${Cart}" var="cart">
                                             <tr>
                                                 <td class="si-pic"><img width="70" height="70"
-                                                                        src="<c:url value="/template/${cart.value.product.img}"/>"
+                                                                        src="<c:url value="/template/img/products/${cart.value.product.img}"/>"
                                                                         alt=""></td>
                                                 <td class="si-text">
                                                     <div class="product-selected">

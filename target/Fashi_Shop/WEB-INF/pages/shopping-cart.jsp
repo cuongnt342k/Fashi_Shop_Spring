@@ -76,7 +76,7 @@
                             <c:forEach items="${cart}" var="cart">
                                 <input type="hidden" value="${cart.key}" name="cartId">
                                 <tr>
-                                    <td class="cart-pic first-row"><img width = "170" height = "170" src="<c:url value="/template/${cart.value.product.img}"/>" alt=""></td>
+                                    <td class="cart-pic first-row"><img width = "170" height = "170" src="<c:url value="/template/img/products/${cart.value.product.img}"/>" alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>${cart.value.product.productName}</h5>
                                     </td>

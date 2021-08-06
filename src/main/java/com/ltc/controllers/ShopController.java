@@ -18,15 +18,13 @@ public class ShopController {
     ProductServices productServices;
 
     @RequestMapping(value = "/shop", method = RequestMethod.GET)
-    public String shopPage(@RequestParam(value = "page") int page,
-                           @RequestParam(value = "categoryId", required = false) Long categoryId,
+    public String shopPage(@RequestParam(value = "categoryId", required = false) Long categoryId,
                            @RequestParam(value = "sortName", required = false) String sortName, Pageable pageable, Model mav) throws Exception {
         Page<Product> pages;
         if (categoryId != null) {
             pages = productServices.findProductByCategory(categoryId, pageable);
         } else {
             pages = productServices.getAllProduct(pageable);
-
         }
         mav.addAttribute("number", pages.getNumber());
         mav.addAttribute("totalPages", pages.getTotalPages());
@@ -34,21 +32,20 @@ public class ShopController {
         mav.addAttribute("size", pages.getSize());
         mav.addAttribute("products", pages.getContent());
         mav.addAttribute("categoryId", categoryId);
-        mav.addAttribute("page", page);
+//        mav.addAttribute("page", page);
         return "shop";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String shopSearch(@RequestParam(value = "page") int page,
-                           @RequestParam(value = "categoryId", required = false) Long categoryId,
-                           @RequestParam(value = "textSearch", required = false) String textSearch,
-                           Pageable pageable, Model mav) throws Exception {
+                             @RequestParam(value = "categoryId", required = false) Long categoryId,
+                             @RequestParam(value = "textSearch", required = false) String textSearch,
+                             Pageable pageable, Model mav) throws Exception {
         Page<Product> pages;
         if (textSearch != null) {
             pages = productServices.findProductName(textSearch, pageable);
         } else {
             pages = productServices.getAllProduct(pageable);
-
         }
         mav.addAttribute("number", pages.getNumber());
         mav.addAttribute("totalPages", pages.getTotalPages());

@@ -1,46 +1,32 @@
 package com.ltc.dto;
 
 import com.ltc.model.Categories;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
 
 public class ProductDTO extends BaseDTO{
 
     private Long productId;
 
+    @NotBlank
     private String productName;
 
     private String img;
 
+    @NotBlank
     private String brand;
 
+    @NotNull
     private Long price;
 
+    @NotNull
     private Long salePrice;
 
     private Long categoriId;
 
-    private String sortName;
-
-    private String sortBy;
-
     private String description;
-
-    public String getSortName() {
-        return sortName;
-    }
-
-    public void setSortName(String sortName) {
-        this.sortName = sortName;
-    }
-
-    public String getSortBy() {
-        return sortBy;
-    }
-
-    public void setSortBy(String sortBy) {
-        this.sortBy = sortBy;
-    }
 
     public Long getProductId() {
         return productId;
