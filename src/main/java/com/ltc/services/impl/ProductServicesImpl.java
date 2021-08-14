@@ -31,10 +31,10 @@ public class ProductServicesImpl implements ProductServices {
     private BaseMapper<Product, ProductDTO> mapper = new BaseMapper<>(Product.class, ProductDTO.class);
 
     @Override
-    public Page<Product> getAllProduct(Pageable pageable) throws Exception {
+    public Page<Product> getAllProduct(Pageable pageable, Boolean deleted) throws Exception {
 //        productRepo.findAll(pageable).getContent();
 //        List<Product> products= new ArrayList<>();
-        return productRepo.findAll(pageable);
+        return productRepo.findAllByDeleted(deleted,pageable);
 //        return null;
     }
 
@@ -79,5 +79,15 @@ public class ProductServicesImpl implements ProductServices {
         productRepo.saveAndFlush(product);
 
         return productDTO;
+    }
+
+    @Override
+    public void deleteProduct(Long productId, String username) throws Exception {
+        Date currentDate = new Date();
+        Product product = productRepo.findOne(productId);
+        product.setDeleted(true);
+        product.setUpdatedBy(username);
+        product.setUpdatedDate(currentDate);
+        productRepo.save(product);
     }
 }

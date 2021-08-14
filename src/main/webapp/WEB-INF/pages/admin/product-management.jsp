@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Trong Cuong
-  Date: 7/9/2021
-  Time: 12:12 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="com.ltc.utils.SecurityUtils" %>
@@ -44,6 +38,10 @@
 
     <link href="<c:url value="/template/css/bootstrap4-toggle.min.css"/>" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -83,7 +81,8 @@
                             </div>
                             <div class="modal-body">
                                 <form:form method="post" modelAttribute="Product"
-                                           action="${contextPath}/admin/product-management/add-product?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+                                           action="${contextPath}/admin/product-management/add-product?${_csrf.parameterName}=${_csrf.token}"
+                                           enctype="multipart/form-data">
                                     <spring:bind path="productName">
                                         <div class="form-group">
                                             <label for="inputProductName">Product name</label>
@@ -132,14 +131,15 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Category</label>
                                             <select id="inputState" class="form-control" name="category">
-                                                <option value="1" selected>Kid</option>
-                                                <option value="2">Man</option>
-                                                <option value="3">Woman</option>
+                                                <option value="1" selected>Man</option>
+                                                <option value="2">Woman</option>
+                                                <option value="3">Kid</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputImage">Image</label>
-                                            <input type="file" name="image" id="inputImage">
+                                            <input type="file" name="image" id="inputImage" accept=".jpg, .jpeg, .png">
+                                            <label>${errorMessage}</label>
                                         </div>
                                     </div>
                                     <hr/>
@@ -150,13 +150,121 @@
                         </div>
                     </div>
                 </div>
+                <!-- Update Modal -->
+                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+                     aria-labelledby="insertModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel">Update Product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form:form method="post" modelAttribute="Product"
+                                           action="${contextPath}/admin/product-management/update-product"
+                                           enctype="multipart/form-data">
+                                    <spring:bind path="productName">
+                                        <div class="form-group">
+                                            <label for="updateProductName">Product name</label>
+                                            <form:input type="text" class="form-control" id="updateProductName"
+                                                        path="productName"/>
+                                            <form:errors path="productName"/>
+                                        </div>
+                                    </spring:bind>
+                                    <spring:bind path="brand">
+                                        <div class="form-group">
+                                            <label for="updateBrand">Brand</label>
+                                            <form:input type="text" class="form-control" id="updateBrand"
+                                                        path="brand"/>
+                                            <form:errors path="brand"/>
+                                        </div>
+                                    </spring:bind>
+
+                                    <div class="form-row">
+
+                                        <spring:bind path="price">
+                                            <div class="form-group col-md-6">
+                                                <label for="updatePrice">Price</label>
+                                                <form:input type="number" class="form-control" id="updatePrice"
+                                                            path="price"/>
+                                                <form:errors path="price"/>
+                                            </div>
+                                        </spring:bind>
+                                        <spring:bind path="salePrice">
+                                            <div class="form-group col-md-6">
+                                                <label for="updateSalePrice">Sale price</label>
+                                                <form:input type="number" class="form-control" id="updateSalePrice"
+                                                            path="salePrice"/>
+                                                <form:errors path="salePrice"/>
+                                            </div>
+                                        </spring:bind>
+                                    </div>
+                                    <spring:bind path="description">
+                                        <div class="form-group">
+                                            <label for="updateDescription">Description</label>
+                                            <form:input type="text" class="form-control" id="updateDescription"
+                                                        path="description"/>
+                                            <form:errors path="description"/>
+                                        </div>
+                                    </spring:bind>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="updateCategory">Category</label>
+                                            <select id="updateCategory" class="form-control" name="category">
+                                                <option value="1" selected>Man</option>
+                                                <option value="2">Woman</option>
+                                                <option value="3">Kid</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputImage">Image</label>
+                                            <input type="file" name="image" id="inputUpdateImage"
+                                                   accept=".jpg, .jpeg, .png">
+                                            <label>${errorMessage}</label>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <input type="submit" class="btn btn-warning" value="Save changes">
+                                    <input type="hidden" name="idUpdate" id="idUpdate">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </form:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Delete Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form method="post" action="${contextPath}/admin/product-management//delete-product">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete these Records?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-danger" value="Delete"/>
+                                    <input type="hidden" name="idDelete" id="idDelete">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                 data-target="#insertModal">
-                            <i class="fa fa-plus"></i> Add User
+                            <i class="fa fa-plus"></i> Add Product
                         </button>
                     </div>
                     <div class="card-body">
@@ -173,13 +281,15 @@
                                     <th>Updated Date</th>
                                     <th>Price</th>
                                     <th>Sale Price</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach var="product" items="${products}">
                                     <tr>
                                         <td><img width="100" height="100"
-                                                 src="<c:url value="/template/img/products/${product.img}"/>" alt=""></td>
+                                                 src="<c:url value="/template/img/products/${product.img}"/>" alt="">
+                                        </td>
                                         <td>${product.productName}</td>
                                         <td>${product.brand}</td>
                                         <td>${product.createdBy}</td>
@@ -188,6 +298,16 @@
                                         <td>${product.updatedDate}</td>
                                         <td>$${product.price}</td>
                                         <td>$${product.salePrice}</td>
+                                        <td>
+                                            <button value="${product.id}" id="updateProduct" data-target="#updateModal"
+                                                    data-toggle="modal" class="btn btn-warning updateProduct"><i
+                                                    class="fas fa-pencil-alt"></i>
+                                            </button>
+                                            <button value="${product.id}" id="deleteProduct" data-target="#deleteModal"
+                                                    data-toggle="modal" class="btn btn-danger deleteProduct"><i
+                                                    class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </c:forEach>
 
@@ -215,7 +335,28 @@
 
 <!-- Scroll to Top Button-->
 <%@include file="logout-modal.jsp" %>
-
+<script type="text/javascript">
+    $("button").click(function () {
+        var idDelete = $(this).val();
+        $('#deleteModal #idDelete').val(idDelete);
+    });
+    $("table button ").click(function () {
+        var idUpdate = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '${contextPath}/api/product/find/' + idUpdate,
+            success: function (product) {
+                $('#updateModal #idUpdate').val(product.id);
+                $('#updateModal #updateProductName').val(product.productName);
+                $('#updateModal #updateBrand').val(product.brand);
+                $('#updateModal #updateDescription').val(product.description);
+                $('#updateModal #updatePrice').val(product.price);
+                $('#updateModal #updateSalePrice').val(product.salePrice);
+                $('#updateModal #updateCategory').val(product.categories.id).attr('selected', 'selected');
+            }
+        })
+    });
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="<c:url value="/template/vendor/jquery/jquery.min.js"/> "></script>
 <script src="<c:url value="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>

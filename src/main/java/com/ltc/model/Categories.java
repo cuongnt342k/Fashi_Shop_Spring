@@ -1,5 +1,7 @@
 package com.ltc.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,8 @@ public class Categories extends BaseModel{
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "categories",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "categories",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Product> products = new ArrayList<>();
 
     public List<Product> getProducts() {

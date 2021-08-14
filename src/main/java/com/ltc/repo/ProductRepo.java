@@ -15,5 +15,7 @@ public interface ProductRepo extends BaseRepository<Product,Long>, ProductRepoCu
 
     Page<Product> findByProductNameContaining(String productName, Pageable page);
 
+    Page<Product> findAllByDeleted(Boolean deleted, Pageable page);
+
     Product findById(Long productId);
 }

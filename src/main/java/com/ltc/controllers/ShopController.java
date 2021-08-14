@@ -24,7 +24,7 @@ public class ShopController {
         if (categoryId != null) {
             pages = productServices.findProductByCategory(categoryId, pageable);
         } else {
-            pages = productServices.getAllProduct(pageable);
+            pages = productServices.getAllProduct(pageable,false);
         }
         mav.addAttribute("number", pages.getNumber());
         mav.addAttribute("totalPages", pages.getTotalPages());
@@ -45,7 +45,7 @@ public class ShopController {
         if (textSearch != null) {
             pages = productServices.findProductName(textSearch, pageable);
         } else {
-            pages = productServices.getAllProduct(pageable);
+            pages = productServices.getAllProduct(pageable,false);
         }
         mav.addAttribute("number", pages.getNumber());
         mav.addAttribute("totalPages", pages.getTotalPages());

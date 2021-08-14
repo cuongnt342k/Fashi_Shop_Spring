@@ -1,5 +1,7 @@
 package com.ltc.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,9 @@ public class Product extends BaseModel {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JsonManagedReference
     Categories categories = new Categories();
 
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)

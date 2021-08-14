@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ProductServices {
-    Page<Product> getAllProduct(Pageable pageable) throws Exception;
+    Page<Product> getAllProduct(Pageable pageable, Boolean deleted) throws Exception;
 
     Page<Product> findProductByCategory(Long categoryId, Pageable pageable) throws Exception;
 
@@ -16,5 +16,7 @@ public interface ProductServices {
     Product findProductById(Long productId) throws Exception;
 
     public ProductDTO saveOrUpdate(ProductDTO productDTO, String username,Long categoryId) throws Exception;
+
+    public void deleteProduct(Long productId, String username) throws Exception;
 
 }
