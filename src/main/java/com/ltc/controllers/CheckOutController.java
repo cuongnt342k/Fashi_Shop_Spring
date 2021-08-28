@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,13 +41,19 @@ public class CheckOutController {
     }
 
     @RequestMapping(value = "/check-out", method = RequestMethod.POST)
-    public String saveOrder(HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors) throws Exception {
+    public String saveOrder(HttpSession session, @Valid @ModelAttribute("orders") OrderDTO orderDTOs, Errors errors, HttpServletResponse response) throws Exception {
+        PrintWriter out = response.getWriter();
         if (errors.hasErrors() == true){
+            out.print("error");
             return "check-out";
         }
         orderDTOs.setTotalPrice((Long) session.getAttribute("TotalPriceCart"));
         orderDTOs.setTotalQuantity((Long) session.getAttribute("TotalQuantityCart"));
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
+        if (cart.isEmpty()){
+            out.print("error");
+            return "check-out";
+        }
         List<OrderProductDTO> orderProductDTOS = new ArrayList<>();
         for (Map.Entry<Long, CartDTO> items: cart.entrySet()) {
             OrderProductDTO orderProductDTO = new OrderProductDTO();
@@ -64,6 +71,6 @@ public class CheckOutController {
         session.removeAttribute("Cart");
         session.removeAttribute("TotalQuantityCart");
         session.removeAttribute("TotalPriceCart");
-        return "check-out";
+        return "check-order";
     }
 }

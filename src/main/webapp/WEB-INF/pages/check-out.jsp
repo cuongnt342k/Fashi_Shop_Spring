@@ -31,6 +31,11 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
+
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -62,7 +67,7 @@
 <!-- Shopping Cart Section Begin -->
 <section class="checkout-section spad">
     <div class="container">
-        <form:form method="post" modelAttribute="orders" class="checkout-form">
+        <form:form method="post" modelAttribute="orders" class="checkout-form" id="myForm">
 
             <div class="row">
                 <div class="col-lg-6">
@@ -167,19 +172,21 @@
                                     <div class="pc-item">
                                         <label for="pc-check">
                                             Cheque Payment
-                                            <form:radiobutton path="paymentType" itemValue="Cheque Payment" id="pc-check"/>
+                                            <form:radiobutton path="paymentType" itemValue="Cheque Payment"
+                                                              value="Cheque Payment" id="pc-check"/>
                                             <span class="checkmark"></span>
                                         </label>
                                         <label for="pc-paypal">
                                             Paypal
-                                            <form:radiobutton path="paymentType" itemValue="Paypal" id="pc-paypal"/>
+                                            <form:radiobutton path="paymentType" checked="checked" itemValue="Paypal"
+                                                              value="Paypal" id="pc-paypal"/>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                 </spring:bind>
                             </div>
                             <div class="order-btn">
-                                <button type="submit" class="site-btn place-btn">Place Order</button>
+                                <button type="submit" id="btn-submit" class="site-btn place-btn">Place Order</button>
                             </div>
                         </div>
                     </div>
@@ -227,7 +234,22 @@
 
 <!-- Footer Section Begin -->
 <%@include file="footer.jsp" %>
+<script type="text/javascript">
+    $(document).on('click', '#btn-submit', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Agree`,
+            denyButtonText: `Disagree`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            $('#myForm').submit();
+        })
+    });
 
+</script>
 <script src="<c:url value="/template/js/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/template/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery-ui.min.js" />"></script>
