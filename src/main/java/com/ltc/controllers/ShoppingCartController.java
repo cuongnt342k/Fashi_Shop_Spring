@@ -3,18 +3,16 @@ package com.ltc.controllers;
 import com.ltc.dto.CartDTO;
 import com.ltc.services.CartServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Controller
+@RestController
 public class ShoppingCartController {
     @Autowired
     CartServices cartServices;
@@ -27,7 +25,16 @@ public class ShoppingCartController {
         return mav;
     }
 
-    @RequestMapping(value = "/addCart")
+    @RequestMapping(value = "/shopping-cart/getAll", method = RequestMethod.GET)
+    public List<CartDTO> getAllProductnCart(HttpSession session) {
+        HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
+        List<CartDTO> product = cart.entrySet().stream()
+                .map(entry -> entry.getValue())
+                .collect(Collectors.toList());
+        return product;
+    }
+
+    @PostMapping(value = "/addCart")
     public String addCart(HttpServletRequest request,
                           HttpSession session,
                           @RequestParam(value = "quantity") int quantity,
@@ -40,11 +47,11 @@ public class ShoppingCartController {
         session.setAttribute("Cart", cart);
         session.setAttribute("TotalQuantityCart", cartServices.totalQuantity(cart));
         session.setAttribute("TotalPriceCart", cartServices.totalPrice(cart));
-        return "redirect:" + request.getHeader("Referer");
+        return " item(s) of this product were added to your shopping cart!";
     }
 
     @RequestMapping(value = "/editCart")
-    public String editCart(HttpServletRequest request, HttpSession session) {
+    public ModelAndView editCart(HttpServletRequest request, HttpSession session) {
         HashMap<Long, CartDTO> cart = (HashMap<Long, CartDTO>) session.getAttribute("Cart");
         if (cart == null) {
             cart = new HashMap<Long, CartDTO>();
@@ -59,7 +66,8 @@ public class ShoppingCartController {
         session.setAttribute("Cart", cart);
         session.setAttribute("TotalQuantityCart", cartServices.totalQuantity(cart));
         session.setAttribute("TotalPriceCart", cartServices.totalPrice(cart));
-        return "redirect:" + request.getHeader("Referer");
+        ModelAndView mav = new ModelAndView("shopping-cart");
+        return mav;
     }
 
     @RequestMapping(value = "deleteCart/{id}")
@@ -72,7 +80,7 @@ public class ShoppingCartController {
         session.setAttribute("Cart", cart);
         session.setAttribute("TotalQuantityCart", cartServices.totalQuantity(cart));
         session.setAttribute("TotalPriceCart", cartServices.totalPrice(cart));
-        return "redirect:" + request.getHeader("Referer");
+        return " Deleted successfully! ";
     }
 
 }
