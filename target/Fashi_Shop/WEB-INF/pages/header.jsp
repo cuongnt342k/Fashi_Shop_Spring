@@ -104,45 +104,45 @@
                         </li>
                         <li class="cart-icon"><a href="<c:url value="/shopping-cart"/>">
                             <i class="icon_bag_alt"></i>
-                            <span>${TotalQuantityCart}</span>
+                            <span id="totalQuantity">${TotalQuantityCart}</span>
                         </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                        <c:forEach items="${Cart}" var="cart">
-                                            <tr>
-                                                <td class="si-pic"><img width="70" height="70"
-                                                                        src="<c:url value="/template/img/products/${cart.value.product.img}"/>"
-                                                                        alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$${cart.value.product.price} x ${cart.value.quantity}</p>
-                                                        <h6>${cart.value.product.productName}</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <a href=" <c:url value="/deleteCart/${cart.key}"/>"><i
-                                                            class="ti-close"></i></a>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>$${TotalPriceCart}</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="<c:url value="/shopping-cart"/>" class="primary-btn view-card">VIEW
-                                        CARD</a>
-                                    <a href="${contextPath}/check-out" class="primary-btn checkout-btn">CHECK
-                                        OUT</a>
-                                </div>
-                            </div>
+<%--                            <div class="cart-hover">--%>
+<%--                                <div class="select-items">--%>
+<%--                                    <table id="cartTable">--%>
+<%--                                        <tbody>--%>
+<%--                                        <c:forEach items="${Cart}" var="cart">--%>
+<%--                                            <tr>--%>
+<%--                                                <td class="si-pic"><img width="70" height="70"--%>
+<%--                                                                        src="<c:url value="/template/img/products/${cart.value.product.img}"/>"--%>
+<%--                                                                        alt=""></td>--%>
+<%--                                                <td class="si-text">--%>
+<%--                                                    <div class="product-selected">--%>
+<%--                                                        <p>$${cart.value.product.price} x ${cart.value.quantity}</p>--%>
+<%--                                                        <h6>${cart.value.product.productName}</h6>--%>
+<%--                                                    </div>--%>
+<%--                                                </td>--%>
+<%--                                                <td class="si-close">--%>
+<%--                                                    <a href=" <c:url value="/deleteCart/${cart.key}"/>"><i--%>
+<%--                                                            class="ti-close"></i></a>--%>
+<%--                                                </td>--%>
+<%--                                            </tr>--%>
+<%--                                        </c:forEach>--%>
+<%--                                        </tbody>--%>
+<%--                                    </table>--%>
+<%--                                </div>--%>
+<%--                                <div class="select-total">--%>
+<%--                                    <span>total:</span>--%>
+<%--                                    <h5>$<h5 id="totalPrice">${TotalPriceCart}</h5></h5>--%>
+<%--                                </div>--%>
+<%--                                <div class="select-button">--%>
+<%--                                    <a href="<c:url value="/shopping-cart"/>" class="primary-btn view-card">VIEW--%>
+<%--                                        CARD</a>--%>
+<%--                                    <a href="${contextPath}/check-out" class="primary-btn checkout-btn">CHECK--%>
+<%--                                        OUT</a>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                         </li>
-                        <li class="cart-price">$${TotalPriceCart}</li>
+                        <li class="cart-price">$<a class="cart-price" id="totalPrice">${TotalPriceCart}</a></li>
                     </ul>
                 </div>
             </div>

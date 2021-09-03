@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/template/js/toastr.min.css" />" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -56,7 +59,7 @@
 <section class="product-shop spad">
     <div class="container">
         <div class="row">
-            <%@include file="left.jsp"%>
+            <%@include file="left.jsp" %>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="product-show-option">
                     <div class="row">
@@ -78,7 +81,7 @@
 
                 <div class="product-list">
                     <div class="row">
-                        <c:forEach var="product" items="${products}">
+                        <c:forEach var="product" items="${products}" varStatus="stat">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
@@ -88,10 +91,18 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="<c:url value="/addCart?id=${product.id}&quantity=1"/>"><i class="icon_bag_alt"></i></a>
+                                            <li class="w-icon active">
+                                                <a href="#!" onclick="addToCart(${stat.index})"><i
+                                                        class="icon_bag_alt"></i>
+                                                    <input type="hidden" value="${product.id}"
+                                                           id="idProduct${stat.index}">
+                                                </a>
                                             </li>
-                                            <li class="quick-view"><a href="<c:url value="/product-detail?productId=${product.id}"/> ">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="<c:url value="/shopping-cart"/>"><i class="fa fa-random"></i></a></li>
+                                            <li class="quick-view"><a
+                                                    href="<c:url value="/product-detail?productId=${product.id}"/> ">+
+                                                Quick View</a></li>
+                                            <li class="w-icon"><a href="<c:url value="/shopping-cart"/>"><i
+                                                    class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
@@ -102,6 +113,7 @@
                                         <div class="product-price">
                                             $${product.price}
                                             <span>$${product.salePrice}</span>
+                                            <input type="hidden" id="price${stat.index}" value="${product.price}">
                                         </div>
                                     </div>
                                 </div>
@@ -177,9 +189,39 @@
 
 <!-- Footer Section Begin -->
 <%@include file="footer.jsp" %>
+<script type="text/javascript">
+    function addToCart(index) {
+        quantity = 1;
 
+        id = $("#idProduct" + index).val();
+        url = '${contextPath}/addCart?id=' + id + '&quantity=' + quantity;
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function (response) {
+                var currentQuantity;
+                var currentPrice;
+                if ($("#totalQuantity").text() == "" || $("#totalPrice").text() == "") {
+                    currentQuantity = 0;
+                    currentPrice = 0;
+                } else {
+                    currentQuantity = parseInt($("#totalQuantity").text());
+                    currentPrice = parseInt($("#totalPrice").text());
+                }
+                totalQuantity = currentQuantity + quantity;
+                totalPrice = currentPrice + parseInt($("#price" + index).val());
+                $.session.set("TotalQuantityCart", totalQuantity);
+                $.session.set("TotalPriceCart", totalPrice);
+                $("#totalQuantity").text($.session.get("TotalQuantityCart"));
+                $("#totalPrice").text($.session.get("TotalPriceCart"));
+                toastr.success( quantity + response);
+            }
+        })
+    }
+</script>
 <script src="<c:url value="/template/js/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/template/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/template/js/jquery.session.js" />"></script>
 <script src="<c:url value="/template/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.countdown.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.nice-select.min.js" />"></script>
@@ -187,7 +229,9 @@
 <script src="<c:url value="/template/js/jquery.dd.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.slicknav.js" />"></script>
 <script src="<c:url value="/template/js/owl.carousel.min.js" />"></script>
+<script src="<c:url value="/template/js/toastr.min.js" />"></script>
 <script src="<c:url value="/template/js/main.js" />"></script>
+
 </body>
 
 </html>

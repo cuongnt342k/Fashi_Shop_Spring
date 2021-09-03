@@ -80,7 +80,7 @@ public class ShoppingCartController {
         session.setAttribute("Cart", cart);
         session.setAttribute("TotalQuantityCart", cartServices.totalQuantity(cart));
         session.setAttribute("TotalPriceCart", cartServices.totalPrice(cart));
-        return " Deleted successfully! ";
+        return " Item(s) deleted in cart successfully! ";
     }
 
 }

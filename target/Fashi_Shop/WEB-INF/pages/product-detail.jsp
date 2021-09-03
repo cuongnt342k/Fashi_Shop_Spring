@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="<c:url value="/template/css/jquery-ui.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/slicknav.min.css" />" type="text/css">
     <link rel="stylesheet" href="<c:url value="/template/css/style.css" />" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/template/js/toastr.min.css" />" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -58,12 +60,13 @@
 <section class="product-shop spad page-details">
     <div class="container">
         <div class="row">
-            <%@include file="left.jsp"%>
+            <%@include file="left.jsp" %>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
-                            <img class="product-big-img" src="<c:url value="/template/${product.img}"/>" alt="">
+                            <img class="product-big-img" src="<c:url value="/template/img/products/${product.img}"/>"
+                                 alt="">
                             <div class="zoom-icon">
                                 <i class="fa fa-search-plus"></i>
                             </div>
@@ -82,61 +85,59 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <form name="addCart" action="<c:url value="/addCart"/>">
-                            <div class="product-details">
-                                <div class="pd-title">
-                                    <span>Product</span>
-                                    <h3>${product.productName}</h3>
-                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                        <div class="product-details">
+                            <div class="pd-title">
+                                <span>Product</span>
+                                <h3>${product.productName}</h3>
+                                <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                            </div>
+                            <div class="pd-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span>(5)</span>
+                            </div>
+                            <div class="pd-desc">
+                                <p>${product.description}</p>
+                                <h4>$${product.price} <span>$${product.salePrice}</span></h4>
+                                <input type="hidden" value="${product.price}" id="price">
+                            </div>
+                            <div class="pd-size-choose">
+                                <div class="sc-item">
+                                    <input type="radio" id="sm-size">
+                                    <label for="sm-size">s</label>
                                 </div>
-                                <div class="pd-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <span>(5)</span>
+                                <div class="sc-item">
+                                    <input type="radio" id="md-size">
+                                    <label for="md-size">m</label>
                                 </div>
-                                <div class="pd-desc">
-                                    <p>${product.description}</p>
-                                    <h4>$${product.price} <span>$${product.salePrice}</span></h4>
+                                <div class="sc-item">
+                                    <input type="radio" id="lg-size">
+                                    <label for="lg-size">l</label>
                                 </div>
-                                <div class="pd-size-choose">
-                                    <div class="sc-item">
-                                        <input type="radio" id="sm-size">
-                                        <label for="sm-size">s</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="md-size">
-                                        <label for="md-size">m</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="lg-size">
-                                        <label for="lg-size">l</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="xl-size">
-                                        <label for="xl-size">xs</label>
-                                    </div>
-                                </div>
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1" name="quantity">
-                                    </div>
-                                    <input name="id" type="hidden" value="${product.id}" class="primary-btn pd-cart">
-                                    <input type="submit" value="Add To Cart" class="primary-btn pd-cart">
-                                    <%--                                    <a href="<c:url value="/addCart?id=${product.id}"/>" class="primary-btn pd-cart"> Add To Cart</a>--%>
-                                </div>
-                                <div class="pd-share">
-                                    <div class="p-code">Sku : ${product.id}</div>
-                                    <div class="pd-social">
-                                        <a href="#"><i class="ti-facebook"></i></a>
-                                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                                        <a href="#"><i class="ti-linkedin"></i></a>
-                                    </div>
+                                <div class="sc-item">
+                                    <input type="radio" id="xl-size">
+                                    <label for="xl-size">xs</label>
                                 </div>
                             </div>
-                        </form>
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" id="quantityP" value="1" name="quantity">
+                                </div>
+                                <input name="idProduct" id="idProduct" type="hidden" value="${product.id}">
+                                <a href="#!" onclick="addToCart()" class="primary-btn pd-cart">Add To Cart</a>
+                            </div>
+                            <div class="pd-share">
+                                <div class="p-code">Sku : ${product.id}</div>
+                                <div class="pd-social">
+                                    <a href="#"><i class="ti-facebook"></i></a>
+                                    <a href="#"><i class="ti-twitter-alt"></i></a>
+                                    <a href="#"><i class="ti-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -427,9 +428,38 @@
 
 <!-- Footer Section Begin -->
 <%@include file="footer.jsp" %>
-
+<script type="text/javascript">
+    function addToCart() {
+        quantity = parseInt($("#quantityP").val());
+        id = $("#idProduct").val();
+        url = '${contextPath}/addCart?id=' + id + '&quantity=' + quantity;
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function (response) {
+                var currentQuantity;
+                var currentPrice;
+                if ($("#totalQuantity").text() == "" || $("#totalPrice").text() == "") {
+                    currentQuantity = 0;
+                    currentPrice = 0;
+                } else {
+                    currentQuantity = parseInt($("#totalQuantity").text());
+                    currentPrice = parseInt($("#totalPrice").text());
+                }
+                totalQuantity = currentQuantity + quantity;
+                totalPrice = currentPrice + parseInt($("#price").val())*quantity;
+                $.session.set("TotalQuantityCart", totalQuantity);
+                $.session.set("TotalPriceCart", totalPrice);
+                $("#totalQuantity").text($.session.get("TotalQuantityCart"));
+                $("#totalPrice").text($.session.get("TotalPriceCart"));
+                toastr.success(quantity + response);
+            }
+        })
+    }
+</script>
 <script src="<c:url value="/template/js/jquery-3.3.1.min.js" />"></script>
 <script src="<c:url value="/template/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/template/js/jquery.session.js" />"></script>
 <script src="<c:url value="/template/js/jquery-ui.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.countdown.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.nice-select.min.js" />"></script>
@@ -437,6 +467,7 @@
 <script src="<c:url value="/template/js/jquery.dd.min.js" />"></script>
 <script src="<c:url value="/template/js/jquery.slicknav.js" />"></script>
 <script src="<c:url value="/template/js/owl.carousel.min.js" />"></script>
+<script src="<c:url value="/template/js/toastr.min.js" />"></script>
 <script src="<c:url value="/template/js/main.js" />"></script>
 </body>
 
